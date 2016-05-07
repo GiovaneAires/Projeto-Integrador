@@ -192,11 +192,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Cadastrar Novo"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bCadastrarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bEditar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Editar Cliente"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bEditarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="tStatus">
           <Properties>

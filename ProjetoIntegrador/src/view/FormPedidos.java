@@ -93,8 +93,18 @@ public class FormPedidos extends javax.swing.JFrame {
         bPesquisar.setText("Pesquisar");
 
         bCadastrar.setText("Cadastrar Novo");
+        bCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCadastrarActionPerformed(evt);
+            }
+        });
 
         bEditar.setText("Editar Cliente");
+        bEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEditarActionPerformed(evt);
+            }
+        });
 
         tStatus.setEditable(false);
 
@@ -416,6 +426,16 @@ public class FormPedidos extends javax.swing.JFrame {
         FormPedidoItem formPedidoItem = new FormPedidoItem();
         formPedidoItem.setVisible(true);
     }//GEN-LAST:event_bFinalizarPedidoActionPerformed
+
+    private void bEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditarActionPerformed
+        CFormCliente cFormCliente = new CFormCliente();
+        cFormCliente.setVisible(true);
+    }//GEN-LAST:event_bEditarActionPerformed
+
+    private void bCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCadastrarActionPerformed
+        CFormCliente cFormCliente = new CFormCliente();
+        cFormCliente.setVisible(true);
+    }//GEN-LAST:event_bCadastrarActionPerformed
 
     /**
      * @param args the command line arguments
