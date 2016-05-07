@@ -5,11 +5,15 @@
  */
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Giovane
  */
-public class CFormBebida extends TFormCadastro {
+public class CFormBebida extends TFormCadastro implements ActionListener{
 
     /**
      * Creates new form CFormBebida
@@ -57,12 +61,6 @@ public class CFormBebida extends TFormCadastro {
         lStatus.setText("Status:");
 
         tCodigo.setEditable(false);
-
-        tMarca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tMarcaActionPerformed(evt);
-            }
-        });
 
         cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Inativo" }));
 
@@ -132,10 +130,16 @@ public class CFormBebida extends TFormCadastro {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tMarcaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tMarcaActionPerformed
+    @Override
+    public void bGravarActionPerformed(ActionEvent evt) {
+        JOptionPane.showConfirmDialog(null, "Confirma?");
+    }
 
+    @Override
+    public void bCancelarActionPerformed(ActionEvent evt) {
+        JOptionPane.showConfirmDialog(null, "Deseja mesmo cancelar a operação?");
+    }
+    
     /**
      * @param args the command line arguments
      */

@@ -5,19 +5,38 @@
  */
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Giovane
  */
-public class TFormCadastro extends javax.swing.JFrame {
+public abstract class TFormCadastro extends javax.swing.JFrame {
 
     /**
      * Creates new form TFormCadastro
      */
     public TFormCadastro() {
         initComponents();
+        bGravar.addActionListener((ActionListener) this);
+        bCancelar.addActionListener((ActionListener) this);
     }
+    
+    public abstract void bGravarActionPerformed(ActionEvent evt);
+    public abstract void bCancelarActionPerformed(ActionEvent evt);
 
+    public void actionPerformed(ActionEvent e) {
+        switch (e.getActionCommand()){
+            case "Gravar":
+                bGravarActionPerformed(e);
+                break;
+            case "Cancelar":
+                bCancelarActionPerformed(e);
+                break;
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,11 +57,6 @@ public class TFormCadastro extends javax.swing.JFrame {
         bGravar.setText("Gravar");
 
         bCancelar.setText("Cancelar");
-        bCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bCancelarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout pSulLayout = new javax.swing.GroupLayout(pSul);
         pSul.setLayout(pSulLayout);
@@ -71,10 +85,6 @@ public class TFormCadastro extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton bCancelar;

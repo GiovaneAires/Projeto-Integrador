@@ -5,11 +5,15 @@
  */
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Giovane
  */
-public class CFormPizza extends TFormCadastro {
+public class CFormPizza extends TFormCadastro implements ActionListener{
 
     /**
      * Creates new form CFormPizza
@@ -18,6 +22,16 @@ public class CFormPizza extends TFormCadastro {
         initComponents();
     }
 
+    @Override
+    public void bGravarActionPerformed(ActionEvent evt) {
+        JOptionPane.showConfirmDialog(null, "Confirma?");
+    }
+
+    @Override
+    public void bCancelarActionPerformed(ActionEvent evt) {
+        JOptionPane.showConfirmDialog(null, "Deseja mesmo cancelar a operação?");
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -5,11 +5,15 @@
  */
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Giovane
  */
-public class CFormBorda extends TFormCadastro {
+public class CFormBorda extends TFormCadastro implements ActionListener{
 
     /**
      * Creates new form CFormBoda
@@ -120,6 +124,16 @@ public class CFormBorda extends TFormCadastro {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+        @Override
+    public void bGravarActionPerformed(ActionEvent evt) {
+        JOptionPane.showConfirmDialog(null, "Confirma?");
+    }
+
+    @Override
+    public void bCancelarActionPerformed(ActionEvent evt) {
+        JOptionPane.showConfirmDialog(null, "Deseja mesmo cancelar a operação?");
+    }
+    
     /**
      * @param args the command line arguments
      */
