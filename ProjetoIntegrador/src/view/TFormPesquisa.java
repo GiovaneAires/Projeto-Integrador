@@ -5,19 +5,45 @@
  */
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Giovane
  */
-public class TFormPesquisa extends javax.swing.JFrame {
+public abstract class TFormPesquisa extends javax.swing.JFrame {
 
     /**
      * Creates new form TFormPesquisa
      */
     public TFormPesquisa() {
         initComponents();
+        bPesquisar.addActionListener((ActionListener) this);
+        bCadastrar.addActionListener((ActionListener) this);
+        bEditar.addActionListener((ActionListener) this);
+        
     }
-
+    
+    public abstract void bPesquisarActionPerformed(ActionEvent evt);
+    public abstract void bCadastrarActionPerformed(ActionEvent evt);
+    public abstract void bEditarActionPerformed(ActionEvent evt);
+    
+    public void actionPerformed(ActionEvent e){
+        switch (e.getActionCommand()){
+            case "Pesquisar":
+                bPesquisarActionPerformed(e);
+                break;
+            case "Cadastrar":
+                bCadastrarActionPerformed(e);
+                break;
+            case "Editar":
+                bEditarActionPerformed(e);
+                break;
+                
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,22 +53,104 @@ public class TFormPesquisa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        pNorte = new javax.swing.JPanel();
+        lCodigo = new javax.swing.JLabel();
+        lDescricao = new javax.swing.JLabel();
+        tCodigo = new javax.swing.JTextField();
+        tDescricao = new javax.swing.JTextField();
+        bPesquisar = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        pSul = new javax.swing.JPanel();
+        bCadastrar = new javax.swing.JButton();
+        bEditar = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Template Pesquisa");
+
+        lCodigo.setText("Código:");
+
+        lDescricao.setText("Descrição:");
+
+        bPesquisar.setText("Pesquisar");
+
+        javax.swing.GroupLayout pNorteLayout = new javax.swing.GroupLayout(pNorte);
+        pNorte.setLayout(pNorteLayout);
+        pNorteLayout.setHorizontalGroup(
+            pNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pNorteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lCodigo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(lDescricao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(bPesquisar)
+                .addContainerGap())
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        pNorteLayout.setVerticalGroup(
+            pNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pNorteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lCodigo)
+                    .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lDescricao)
+                    .addComponent(tDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bPesquisar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        getContentPane().add(pNorte, java.awt.BorderLayout.NORTH);
+
+        bCadastrar.setText("Cadastrar");
+
+        bEditar.setText("Editar");
+
+        javax.swing.GroupLayout pSulLayout = new javax.swing.GroupLayout(pSul);
+        pSul.setLayout(pSulLayout);
+        pSulLayout.setHorizontalGroup(
+            pSulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pSulLayout.createSequentialGroup()
+                .addContainerGap(177, Short.MAX_VALUE)
+                .addComponent(bCadastrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bEditar)
+                .addGap(175, 175, 175))
+            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        pSulLayout.setVerticalGroup(
+            pSulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pSulLayout.createSequentialGroup()
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pSulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bCadastrar)
+                    .addComponent(bEditar))
+                .addContainerGap())
+        );
+
+        getContentPane().add(pSul, java.awt.BorderLayout.SOUTH);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    protected javax.swing.JButton bCadastrar;
+    protected javax.swing.JButton bEditar;
+    protected javax.swing.JButton bPesquisar;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lCodigo;
+    protected javax.swing.JLabel lDescricao;
+    private javax.swing.JPanel pNorte;
+    private javax.swing.JPanel pSul;
+    private javax.swing.JTextField tCodigo;
+    private javax.swing.JTextField tDescricao;
     // End of variables declaration//GEN-END:variables
 }
