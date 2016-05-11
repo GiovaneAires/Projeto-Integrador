@@ -37,7 +37,7 @@ public class FormPedidoItem extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbPedidoItem = new javax.swing.JTable();
         lValor = new javax.swing.JLabel();
-        tValorTotal = new javax.swing.JTextField();
+        lValorFinal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Confirmar Pedido");
@@ -105,7 +105,8 @@ public class FormPedidoItem extends javax.swing.JFrame {
         lValor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lValor.setText("Valor Total:");
 
-        tValorTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lValorFinal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lValorFinal.setText("0,00");
 
         javax.swing.GroupLayout pCentroLayout = new javax.swing.GroupLayout(pCentro);
         pCentro.setLayout(pCentroLayout);
@@ -118,7 +119,7 @@ public class FormPedidoItem extends javax.swing.JFrame {
                     .addGroup(pCentroLayout.createSequentialGroup()
                         .addComponent(lValor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lValorFinal)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -130,7 +131,7 @@ public class FormPedidoItem extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(pCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lValor)
-                    .addComponent(tValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lValorFinal))
                 .addContainerGap())
         );
 
@@ -188,9 +189,9 @@ public class FormPedidoItem extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lValor;
+    private javax.swing.JLabel lValorFinal;
     private javax.swing.JPanel pCentro;
     private javax.swing.JPanel pSul;
-    private javax.swing.JTextField tValorTotal;
     private javax.swing.JTable tbPedidoItem;
     // End of variables declaration//GEN-END:variables
 }
