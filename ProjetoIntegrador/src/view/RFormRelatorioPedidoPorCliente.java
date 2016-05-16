@@ -9,12 +9,12 @@ package view;
  *
  * @author Giovane
  */
-public class FormRelatorioPedidoPorCliente extends javax.swing.JFrame {
+public class RFormRelatorioPedidoPorCliente extends javax.swing.JFrame {
 
     /**
      * Creates new form Relatorio
      */
-    public FormRelatorioPedidoPorCliente() {
+    public RFormRelatorioPedidoPorCliente() {
         initComponents();
     }
 
@@ -231,21 +231,23 @@ public class FormRelatorioPedidoPorCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormRelatorioPedidoPorCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RFormRelatorioPedidoPorCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormRelatorioPedidoPorCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RFormRelatorioPedidoPorCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormRelatorioPedidoPorCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RFormRelatorioPedidoPorCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormRelatorioPedidoPorCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RFormRelatorioPedidoPorCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormRelatorioPedidoPorCliente().setVisible(true);
+                new RFormRelatorioPedidoPorCliente().setVisible(true);
             }
         });
     }
