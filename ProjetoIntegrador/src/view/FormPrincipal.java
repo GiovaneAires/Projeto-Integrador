@@ -128,6 +128,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         mRelatorio.add(miRelatorioCliente);
 
         miRelatorioPeriodo.setText("Relatório por Período");
+        miRelatorioPeriodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miRelatorioPeriodoActionPerformed(evt);
+            }
+        });
         mRelatorio.add(miRelatorioPeriodo);
 
         menu.add(mRelatorio);
@@ -166,6 +171,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         RFormRelatorioPedidoPorCliente relatorioCliente = new RFormRelatorioPedidoPorCliente();
         relatorioCliente.setVisible(true);
     }//GEN-LAST:event_miRelatorioClienteActionPerformed
+
+    private void miRelatorioPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miRelatorioPeriodoActionPerformed
+        RFormRelatorioPedidoPorPeriodo relatorioPeriodo = new RFormRelatorioPedidoPorPeriodo();
+        relatorioPeriodo.setVisible(true);
+    }//GEN-LAST:event_miRelatorioPeriodoActionPerformed
 
     /**
      * @param args the command line arguments
