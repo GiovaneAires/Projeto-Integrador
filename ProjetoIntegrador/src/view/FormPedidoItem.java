@@ -141,11 +141,19 @@ public class FormPedidoItem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bConfirmarActionPerformed
-        JOptionPane.showConfirmDialog(null, "Deseja mermo confirmar este pedido?");
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja mesmo confirmar este pedido?","Pedidos", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (resposta == 0){
+            JOptionPane.showMessageDialog(null, "Pedido realizado com sucesso!");
+            this.dispose();
+        }
     }//GEN-LAST:event_bConfirmarActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        JOptionPane.showConfirmDialog(null, "Deseja mermo cancelar este pedido?");
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja mermo cancelar este pedido?","Pedidos", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (resposta == 0){
+            JOptionPane.showMessageDialog(null, "Pedido cancelado.");
+            this.dispose();
+        }
     }//GEN-LAST:event_bCancelarActionPerformed
 
     /**
