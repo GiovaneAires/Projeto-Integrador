@@ -203,12 +203,20 @@ public class CFormCliente extends TFormCadastro implements ActionListener{
 
     @Override
     public void bGravarActionPerformed(ActionEvent evt) {
-        JOptionPane.showConfirmDialog(null, "Confirma?");
+        int resposta = JOptionPane.showConfirmDialog(null, "Confirma o cadastro do cliente?", "Cadastro de Clientes", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(resposta == 0){
+            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+            this.dispose();
+        }
     }
 
     @Override
     public void bCancelarActionPerformed(ActionEvent evt) {
-        JOptionPane.showConfirmDialog(null, "Deseja mesmo cancelar a operação?");
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja mesmo cancelar a operação?", "Cadastro de Clientes", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (resposta == 0){
+            JOptionPane.showMessageDialog(null, "Operação cancelada!");
+            this.dispose();
+        }
     }
     
     /**

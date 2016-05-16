@@ -124,14 +124,22 @@ public class CFormBorda extends TFormCadastro implements ActionListener{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-        @Override
+    @Override
     public void bGravarActionPerformed(ActionEvent evt) {
-        JOptionPane.showConfirmDialog(null, "Confirma?");
+        int resposta = JOptionPane.showConfirmDialog(null, "Confirma o cadastro da borda?","Cadastro de Bordas", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(resposta == 0){
+            JOptionPane.showMessageDialog(null, "Borda cadastrada com sucesso!");
+            this.dispose();
+        }
     }
 
     @Override
     public void bCancelarActionPerformed(ActionEvent evt) {
-        JOptionPane.showConfirmDialog(null, "Deseja mesmo cancelar a operação?");
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja mesmo cancelar a operação?","Cadastro de Bordas", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (resposta == 0){
+            JOptionPane.showMessageDialog(null, "Operação cancelada!");
+            this.dispose();
+        }
     }
     
     /**
