@@ -35,7 +35,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="miPizza">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Pizza"/>
+                <Property name="text" type="java.lang.String" value="Pizzas"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miPizzaActionPerformed"/>

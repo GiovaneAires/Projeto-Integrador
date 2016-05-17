@@ -95,7 +95,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         });
         mCadastro.add(miClientes);
 
-        miPizza.setText("Pizza");
+        miPizza.setText("Pizzas");
         miPizza.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miPizzaActionPerformed(evt);

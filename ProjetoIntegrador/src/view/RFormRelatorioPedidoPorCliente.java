@@ -41,7 +41,7 @@ public class RFormRelatorioPedidoPorCliente extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         bGerar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Relatório de Pedidos por Cliente");
 
         bPesquisar.setText("Pesquisar");
