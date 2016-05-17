@@ -27,7 +27,6 @@ public class FormPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pSul = new javax.swing.JPanel();
         pCentro = new javax.swing.JPanel();
         menu = new javax.swing.JMenuBar();
         mCadastro = new javax.swing.JMenu();
@@ -43,19 +42,6 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout pSulLayout = new javax.swing.GroupLayout(pSul);
-        pSul.setLayout(pSulLayout);
-        pSulLayout.setHorizontalGroup(
-            pSulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-        pSulLayout.setVerticalGroup(
-            pSulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(pSul, java.awt.BorderLayout.SOUTH);
-
         javax.swing.GroupLayout pCentroLayout = new javax.swing.GroupLayout(pCentro);
         pCentro.setLayout(pCentroLayout);
         pCentroLayout.setHorizontalGroup(
@@ -64,10 +50,12 @@ public class FormPrincipal extends javax.swing.JFrame {
         );
         pCentroLayout.setVerticalGroup(
             pCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 179, Short.MAX_VALUE)
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         getContentPane().add(pCentro, java.awt.BorderLayout.CENTER);
+
+        menu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         mCadastro.setText("Cadastro");
 
@@ -225,6 +213,5 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem miRelatorioCliente;
     private javax.swing.JMenuItem miRelatorioPeriodo;
     private javax.swing.JPanel pCentro;
-    private javax.swing.JPanel pSul;
     // End of variables declaration//GEN-END:variables
 }
