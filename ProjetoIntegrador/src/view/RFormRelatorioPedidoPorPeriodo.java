@@ -27,22 +27,129 @@ public class RFormRelatorioPedidoPorPeriodo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pNorte = new javax.swing.JPanel();
+        lDatInicial = new javax.swing.JLabel();
+        tDataInicial = new javax.swing.JTextField();
+        lDataFinal = new javax.swing.JLabel();
+        tDataFinal = new javax.swing.JTextField();
+        bPesquisar = new javax.swing.JButton();
+        pSul = new javax.swing.JPanel();
+        bGerar = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        pCentro = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbPedidoPeriodo = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        lDatInicial.setText("Data Inicial:");
+
+        lDataFinal.setText("Data Final:");
+
+        bPesquisar.setText("Pesquisar");
+
+        javax.swing.GroupLayout pNorteLayout = new javax.swing.GroupLayout(pNorte);
+        pNorte.setLayout(pNorteLayout);
+        pNorteLayout.setHorizontalGroup(
+            pNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pNorteLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(lDatInicial)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(lDataFinal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(bPesquisar)
+                .addGap(19, 19, 19))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        pNorteLayout.setVerticalGroup(
+            pNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pNorteLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lDatInicial)
+                    .addComponent(tDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lDataFinal)
+                    .addComponent(tDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bPesquisar))
+                .addContainerGap())
         );
+
+        getContentPane().add(pNorte, java.awt.BorderLayout.NORTH);
+
+        bGerar.setText("Gerar Relatório");
+
+        javax.swing.GroupLayout pSulLayout = new javax.swing.GroupLayout(pSul);
+        pSul.setLayout(pSulLayout);
+        pSulLayout.setHorizontalGroup(
+            pSulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1)
+            .addGroup(pSulLayout.createSequentialGroup()
+                .addGap(198, 198, 198)
+                .addComponent(bGerar)
+                .addContainerGap(197, Short.MAX_VALUE))
+        );
+        pSulLayout.setVerticalGroup(
+            pSulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pSulLayout.createSequentialGroup()
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bGerar)
+                .addContainerGap())
+        );
+
+        getContentPane().add(pSul, java.awt.BorderLayout.SOUTH);
+
+        tbPedidoPeriodo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tbPedidoPeriodo);
+
+        javax.swing.GroupLayout pCentroLayout = new javax.swing.GroupLayout(pCentro);
+        pCentro.setLayout(pCentroLayout);
+        pCentroLayout.setHorizontalGroup(
+            pCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pCentroLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pCentroLayout.setVerticalGroup(
+            pCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pCentroLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(pCentro, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bGerar;
+    private javax.swing.JButton bPesquisar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lDatInicial;
+    private javax.swing.JLabel lDataFinal;
+    private javax.swing.JPanel pCentro;
+    private javax.swing.JPanel pNorte;
+    private javax.swing.JPanel pSul;
+    private javax.swing.JTextField tDataFinal;
+    private javax.swing.JTextField tDataInicial;
+    private javax.swing.JTable tbPedidoPeriodo;
     // End of variables declaration//GEN-END:variables
 }

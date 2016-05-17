@@ -28,14 +28,7 @@ public class RFormRelatorioPedidoPorCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         pNorte = new javax.swing.JPanel();
-        pRelatorioPeriodo = new javax.swing.JPanel();
-        bGerarPeriodo = new javax.swing.JButton();
-        lDataFinal = new javax.swing.JLabel();
-        tDataFinal = new javax.swing.JTextField();
-        tDataInicial = new javax.swing.JTextField();
-        lDataInicial = new javax.swing.JLabel();
-        pRelatorioCliente = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        bPesquisar = new javax.swing.JButton();
         cbClientes = new javax.swing.JComboBox<>();
         lCliente = new javax.swing.JLabel();
         tCodigo = new javax.swing.JTextField();
@@ -46,110 +39,45 @@ public class RFormRelatorioPedidoPorCliente extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         pSul = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
-        bBaixar = new javax.swing.JButton();
+        bGerar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Relatório de Pedidos por Cliente");
 
-        pRelatorioPeriodo.setPreferredSize(new java.awt.Dimension(250, 136));
-
-        bGerarPeriodo.setText("Gerar relatório por período");
-
-        lDataFinal.setText("Data Inicial:");
-
-        lDataInicial.setText("Data Final:");
-
-        javax.swing.GroupLayout pRelatorioPeriodoLayout = new javax.swing.GroupLayout(pRelatorioPeriodo);
-        pRelatorioPeriodo.setLayout(pRelatorioPeriodoLayout);
-        pRelatorioPeriodoLayout.setHorizontalGroup(
-            pRelatorioPeriodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pRelatorioPeriodoLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(pRelatorioPeriodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pRelatorioPeriodoLayout.createSequentialGroup()
-                        .addComponent(lDataInicial)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pRelatorioPeriodoLayout.createSequentialGroup()
-                        .addComponent(lDataFinal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(bGerarPeriodo))
-                .addContainerGap(44, Short.MAX_VALUE))
-        );
-        pRelatorioPeriodoLayout.setVerticalGroup(
-            pRelatorioPeriodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pRelatorioPeriodoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pRelatorioPeriodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lDataInicial))
-                .addGap(18, 18, 18)
-                .addGroup(pRelatorioPeriodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lDataFinal)
-                    .addComponent(tDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(bGerarPeriodo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        pRelatorioCliente.setPreferredSize(new java.awt.Dimension(250, 136));
-
-        jButton1.setText("Gerar relatório por cliente");
-
-        cbClientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        bPesquisar.setText("Pesquisar");
 
         lCliente.setText("Cliente:");
 
         lCodigo.setText("Código:");
-
-        javax.swing.GroupLayout pRelatorioClienteLayout = new javax.swing.GroupLayout(pRelatorioCliente);
-        pRelatorioCliente.setLayout(pRelatorioClienteLayout);
-        pRelatorioClienteLayout.setHorizontalGroup(
-            pRelatorioClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pRelatorioClienteLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(pRelatorioClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pRelatorioClienteLayout.createSequentialGroup()
-                        .addComponent(lCodigo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pRelatorioClienteLayout.createSequentialGroup()
-                        .addComponent(lCliente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1))
-                .addContainerGap(39, Short.MAX_VALUE))
-        );
-        pRelatorioClienteLayout.setVerticalGroup(
-            pRelatorioClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pRelatorioClienteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pRelatorioClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lCodigo)
-                    .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pRelatorioClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lCliente)
-                    .addComponent(cbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         javax.swing.GroupLayout pNorteLayout = new javax.swing.GroupLayout(pNorte);
         pNorte.setLayout(pNorteLayout);
         pNorteLayout.setHorizontalGroup(
             pNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pNorteLayout.createSequentialGroup()
-                .addComponent(pRelatorioCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(lCodigo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pRelatorioPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lCliente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bPesquisar)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         pNorteLayout.setVerticalGroup(
             pNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pRelatorioPeriodo, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
-            .addComponent(pRelatorioCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pNorteLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lCodigo)
+                    .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lCliente)
+                    .addComponent(cbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bPesquisar))
+                .addContainerGap())
         );
 
         getContentPane().add(pNorte, java.awt.BorderLayout.NORTH);
@@ -181,32 +109,32 @@ public class RFormRelatorioPedidoPorCliente extends javax.swing.JFrame {
             pCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCentroLayout.createSequentialGroup()
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         getContentPane().add(pCentro, java.awt.BorderLayout.CENTER);
 
-        bBaixar.setText("Baixar Relatório");
+        bGerar.setText("Gerar Relatório");
 
         javax.swing.GroupLayout pSulLayout = new javax.swing.GroupLayout(pSul);
         pSul.setLayout(pSulLayout);
         pSulLayout.setHorizontalGroup(
             pSulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator2)
+            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pSulLayout.createSequentialGroup()
-                .addContainerGap(207, Short.MAX_VALUE)
-                .addComponent(bBaixar)
-                .addGap(190, 190, 190))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bGerar)
+                .addGap(195, 195, 195))
         );
         pSulLayout.setVerticalGroup(
             pSulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pSulLayout.createSequentialGroup()
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bBaixar)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bGerar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(pSul, java.awt.BorderLayout.PAGE_END);
@@ -215,25 +143,18 @@ public class RFormRelatorioPedidoPorCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bBaixar;
-    private javax.swing.JButton bGerarPeriodo;
+    private javax.swing.JButton bGerar;
+    private javax.swing.JButton bPesquisar;
     private javax.swing.JComboBox<String> cbClientes;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lCliente;
     private javax.swing.JLabel lCodigo;
-    private javax.swing.JLabel lDataFinal;
-    private javax.swing.JLabel lDataInicial;
     private javax.swing.JPanel pCentro;
     private javax.swing.JPanel pNorte;
-    private javax.swing.JPanel pRelatorioCliente;
-    private javax.swing.JPanel pRelatorioPeriodo;
     private javax.swing.JPanel pSul;
     private javax.swing.JTextField tCodigo;
-    private javax.swing.JTextField tDataFinal;
-    private javax.swing.JTextField tDataInicial;
     private javax.swing.JTable tbPedidoCliente;
     // End of variables declaration//GEN-END:variables
 }
