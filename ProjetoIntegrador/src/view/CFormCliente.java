@@ -80,7 +80,7 @@ public class CFormCliente extends TFormCadastro implements ActionListener{
 
         lStatus.setText("Status:");
 
-        tCodigo.setEditable(false);
+        tCodigo.setEnabled(false);
 
         try {
             tfTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));

@@ -56,7 +56,7 @@ public class CFormBorda extends TFormCadastro implements ActionListener{
 
         lPreco.setText("Preço:");
 
-        tCodigo.setEditable(false);
+        tCodigo.setEnabled(false);
 
         cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Inativo" }));
 

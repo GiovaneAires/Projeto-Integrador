@@ -107,40 +107,49 @@ public class FormPedido extends javax.swing.JFrame {
         });
 
         tStatus.setEditable(false);
+        tStatus.setEnabled(false);
 
         Status.setText("Status:");
 
         tComplemento.setEditable(false);
+        tComplemento.setEnabled(false);
 
         lComplemento.setText("Complemento:");
 
         tNumero.setEditable(false);
+        tNumero.setEnabled(false);
 
         lNumero.setText("Número:");
 
         tLogradouro.setEditable(false);
+        tLogradouro.setEnabled(false);
 
         lLogradouro.setText("Logradouro:");
 
         lCodigo.setText("Código:");
 
         tCodigo.setEditable(false);
+        tCodigo.setEnabled(false);
 
         lNome.setText("Nome:");
 
         tNome.setEditable(false);
+        tNome.setEnabled(false);
 
         lCidade.setText("Cidade:");
 
         tCidade.setEditable(false);
+        tCidade.setEnabled(false);
 
         lEstado.setText("Estado:");
 
         tEstado.setEditable(false);
+        tEstado.setEnabled(false);
 
         lBairro.setText("Bairro:");
 
         tBairro.setEditable(false);
+        tBairro.setEnabled(false);
 
         lCep.setText("CEP:");
 
@@ -150,6 +159,7 @@ public class FormPedido extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfCep.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Dados do Cliente");

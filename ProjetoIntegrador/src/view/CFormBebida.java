@@ -60,7 +60,7 @@ public class CFormBebida extends TFormCadastro implements ActionListener{
 
         lStatus.setText("Status:");
 
-        tCodigo.setEditable(false);
+        tCodigo.setEnabled(false);
 
         cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Inativo" }));
 

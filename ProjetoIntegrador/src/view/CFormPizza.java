@@ -79,7 +79,7 @@ public class CFormPizza extends TFormCadastro implements ActionListener{
 
         lStatus.setText("Status:");
 
-        tCodigo.setEditable(false);
+        tCodigo.setEnabled(false);
 
         tSabor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
