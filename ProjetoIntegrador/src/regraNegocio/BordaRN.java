@@ -6,6 +6,7 @@
 package regraNegocio;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import persistencia.BordaPers;
 import vo.BordaVO;
 
@@ -16,6 +17,11 @@ import vo.BordaVO;
 public class BordaRN {
     public BordaRN(){
         
+    }
+    
+    public ArrayList<BordaVO> buscarBorda() throws SQLException, Exception{
+        BordaPers borPers = new BordaPers();
+        return borPers.buscarBorda();
     }
     
     public void inserirBorda(BordaVO borVO) throws SQLException, Exception{

@@ -5,6 +5,11 @@
  */
 package persistencia;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import vo.BebidaVO;
 
 /**
@@ -17,6 +22,31 @@ public class BebidaPers {
         this.conexao = new Conexao();
     }
     
+    public ArrayList <BebidaVO> buscarBebida() throws SQLException, Exception {
+        
+        ArrayList <BebidaVO> bebida = new ArrayList();
+        
+        try {
+            Connection con;
+            Statement stm;
+            ResultSet consulta;
+            
+            con = conexao.conectar();
+            stm = con.createStatement();
+            consulta = stm.executeQuery("SELECT * FROM bebida;");
+
+            while (consulta.next()) {
+
+                BebidaVO bebVO = new BebidaVO();
+                
+                bebida.add(bebVO);
+            }
+        } finally {
+            conexao.desconectar();
+            return bebida;
+        }
+    }
+        
     public void inserirBebida(BebidaVO bebVO){
         
     }

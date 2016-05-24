@@ -6,6 +6,7 @@
 package regraNegocio;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import persistencia.BebidaPers;
 import vo.BebidaVO;
 
@@ -18,7 +19,12 @@ public class BebidaRN {
     public BebidaRN(){
         
     }
-        
+    
+    public ArrayList<BebidaVO> buscarBebida() throws SQLException, Exception{
+        BebidaPers bebPers = new BebidaPers();
+        return bebPers.buscarBebida();
+    }
+    
     public void inserirBebida(BebidaVO bebVO) throws SQLException, Exception{
         BebidaPers bebPers = new BebidaPers();
         bebPers.inserirBebida(bebVO);

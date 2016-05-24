@@ -6,6 +6,7 @@
 package regraNegocio;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import persistencia.ClientePers;
 import vo.ClienteVO;
 
@@ -16,6 +17,11 @@ import vo.ClienteVO;
 public class ClienteRN {
     public ClienteRN(){
         
+    }
+    
+    public ArrayList<ClienteVO> buscarCliente() throws SQLException, Exception{
+        ClientePers cliPers = new ClientePers();
+        return cliPers.buscarCliente();
     }
     
     public void inserirCliente(ClienteVO cliVO) throws SQLException, Exception{

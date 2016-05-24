@@ -6,6 +6,7 @@
 package regraNegocio;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import persistencia.PedidoPers;
 import vo.PedidoVO;
 
@@ -16,6 +17,11 @@ import vo.PedidoVO;
 public class PedidoRN {
     public PedidoRN(){
         
+    }
+    
+    public ArrayList<PedidoVO> buscarPedido() throws SQLException, Exception{
+        PedidoPers pedPers = new PedidoPers();
+        return pedPers.buscarPedido();
     }
     
     public void inserirPedido(PedidoVO pedVO) throws SQLException, Exception{

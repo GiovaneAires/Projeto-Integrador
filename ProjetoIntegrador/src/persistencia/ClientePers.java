@@ -5,6 +5,11 @@
  */
 package persistencia;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import vo.ClienteVO;
 
 /**
@@ -17,6 +22,30 @@ public class ClientePers {
         this.conexao = new Conexao();
     }
 
+    public ArrayList <ClienteVO> buscarCliente() throws SQLException, Exception {
+
+        ArrayList <ClienteVO> cliente = new ArrayList();
+        
+        try {
+            Connection con;
+            Statement stm;
+            ResultSet consulta;
+            
+            con = conexao.conectar();
+            stm = con.createStatement();
+            consulta = stm.executeQuery("SELECT * FROM cliente;");
+
+            while (consulta.next()) {
+                ClienteVO cliVO = new ClienteVO();
+               
+                cliente.add(cliVO);
+            }
+        } finally {
+            conexao.desconectar();
+            return cliente;
+        }
+    }
+    
     public void inserirCliente(ClienteVO cliVO) {
         
     }
