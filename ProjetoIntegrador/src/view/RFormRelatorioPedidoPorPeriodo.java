@@ -31,8 +31,8 @@ public class RFormRelatorioPedidoPorPeriodo extends javax.swing.JFrame {
         lDatInicial = new javax.swing.JLabel();
         lDataFinal = new javax.swing.JLabel();
         bPesquisar = new javax.swing.JButton();
-        cDataInicial = new com.toedter.calendar.JDateChooser();
-        cDataFinal = new com.toedter.calendar.JDateChooser();
+        dtInicial = new com.toedter.calendar.JDateChooser();
+        dtFinal = new com.toedter.calendar.JDateChooser();
         pSul = new javax.swing.JPanel();
         bGerar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -54,18 +54,17 @@ public class RFormRelatorioPedidoPorPeriodo extends javax.swing.JFrame {
             pNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pNorteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lDatInicial)
+                .addGroup(pNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pNorteLayout.createSequentialGroup()
+                        .addComponent(lDatInicial)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dtInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(lDataFinal))
+                    .addComponent(bPesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lDataFinal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cDataFinal, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                .addGap(11, 11, 11))
-            .addGroup(pNorteLayout.createSequentialGroup()
-                .addGap(208, 208, 208)
-                .addComponent(bPesquisar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(dtFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         pNorteLayout.setVerticalGroup(
             pNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,10 +72,10 @@ public class RFormRelatorioPedidoPorPeriodo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lDatInicial)
-                    .addComponent(cDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lDataFinal)
-                    .addComponent(cDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(dtInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dtFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addComponent(bPesquisar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -93,7 +92,7 @@ public class RFormRelatorioPedidoPorPeriodo extends javax.swing.JFrame {
             .addGroup(pSulLayout.createSequentialGroup()
                 .addGap(198, 198, 198)
                 .addComponent(bGerar)
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
         pSulLayout.setVerticalGroup(
             pSulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +124,7 @@ public class RFormRelatorioPedidoPorPeriodo extends javax.swing.JFrame {
             pCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pCentroLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pCentroLayout.setVerticalGroup(
@@ -144,8 +143,8 @@ public class RFormRelatorioPedidoPorPeriodo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bGerar;
     private javax.swing.JButton bPesquisar;
-    private com.toedter.calendar.JDateChooser cDataFinal;
-    private com.toedter.calendar.JDateChooser cDataInicial;
+    private com.toedter.calendar.JDateChooser dtFinal;
+    private com.toedter.calendar.JDateChooser dtInicial;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lDatInicial;

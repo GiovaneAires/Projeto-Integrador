@@ -18,7 +18,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-58,0,0,1,-12"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-58,0,0,1,-11"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -33,21 +33,21 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lDatInicial" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="lDatInicial" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="dtInicial" min="-2" pref="140" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="lDataFinal" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="bPesquisar" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="cDataInicial" min="-2" pref="172" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="lDataFinal" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="cDataFinal" pref="172" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="208" max="-2" attributes="0"/>
-                  <Component id="bPesquisar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="dtFinal" min="-2" pref="140" max="-2" attributes="0"/>
+                  <EmptySpace pref="42" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -57,11 +57,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lDatInicial" min="-2" max="-2" attributes="0"/>
-                      <Component id="cDataInicial" min="-2" max="-2" attributes="0"/>
                       <Component id="lDataFinal" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="cDataFinal" min="-2" max="-2" attributes="0"/>
+                      <Component id="dtInicial" min="-2" max="-2" attributes="0"/>
+                      <Component id="dtFinal" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Component id="bPesquisar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -84,9 +84,9 @@
             <Property name="text" type="java.lang.String" value="Pesquisar"/>
           </Properties>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="cDataInicial">
+        <Component class="com.toedter.calendar.JDateChooser" name="dtInicial">
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="cDataFinal">
+        <Component class="com.toedter.calendar.JDateChooser" name="dtFinal">
         </Component>
       </SubComponents>
     </Container>
@@ -104,7 +104,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
                   <Component id="bGerar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="197" max="32767" attributes="0"/>
+                  <EmptySpace pref="198" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -141,7 +141,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="480" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="481" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
