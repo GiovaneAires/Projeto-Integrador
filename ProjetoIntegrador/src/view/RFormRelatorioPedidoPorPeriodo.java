@@ -31,8 +31,8 @@ public class RFormRelatorioPedidoPorPeriodo extends javax.swing.JFrame {
         lDatInicial = new javax.swing.JLabel();
         lDataFinal = new javax.swing.JLabel();
         bPesquisar = new javax.swing.JButton();
-        dtInicial = new com.toedter.calendar.JDateChooser();
-        dtFinal = new com.toedter.calendar.JDateChooser();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         pSul = new javax.swing.JPanel();
         bGerar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -58,13 +58,13 @@ public class RFormRelatorioPedidoPorPeriodo extends javax.swing.JFrame {
                     .addGroup(pNorteLayout.createSequentialGroup()
                         .addComponent(lDatInicial)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dtInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(103, 103, 103)
                         .addComponent(lDataFinal))
                     .addComponent(bPesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dtFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         pNorteLayout.setVerticalGroup(
             pNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,8 +73,8 @@ public class RFormRelatorioPedidoPorPeriodo extends javax.swing.JFrame {
                 .addGroup(pNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lDatInicial)
                     .addComponent(lDataFinal)
-                    .addComponent(dtInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dtFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addComponent(bPesquisar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -143,8 +143,8 @@ public class RFormRelatorioPedidoPorPeriodo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bGerar;
     private javax.swing.JButton bPesquisar;
-    private com.toedter.calendar.JDateChooser dtFinal;
-    private com.toedter.calendar.JDateChooser dtInicial;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lDatInicial;

@@ -39,15 +39,15 @@
                       <Group type="102" attributes="0">
                           <Component id="lDatInicial" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="dtInicial" min="-2" pref="140" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
                           <Component id="lDataFinal" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="bPesquisar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="dtFinal" min="-2" pref="140" max="-2" attributes="0"/>
-                  <EmptySpace pref="42" max="32767" attributes="0"/>
+                  <Component id="jDateChooser2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="95" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -58,8 +58,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lDatInicial" min="-2" max="-2" attributes="0"/>
                       <Component id="lDataFinal" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="dtInicial" min="-2" max="-2" attributes="0"/>
-                      <Component id="dtFinal" min="-2" max="-2" attributes="0"/>
+                      <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jDateChooser2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Component id="bPesquisar" min="-2" max="-2" attributes="0"/>
@@ -84,9 +84,9 @@
             <Property name="text" type="java.lang.String" value="Pesquisar"/>
           </Properties>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="dtInicial">
+        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="dtFinal">
+        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser2">
         </Component>
       </SubComponents>
     </Container>
