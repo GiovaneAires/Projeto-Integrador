@@ -25,13 +25,8 @@ public class BebidaRN {
         return bebPers.buscarBebida();
     }
     
-    public void inserirBebida(BebidaVO bebVO) throws SQLException, Exception{
+    public void gravarBebida(BebidaVO bebVO) throws SQLException, Exception{
         BebidaPers bebPers = new BebidaPers();
-        bebPers.inserirBebida(bebVO);
-    }
-    
-    public void editarBebida(BebidaVO bebVO) throws SQLException, Exception{
-        BebidaPers bebPers = new BebidaPers();
-        bebPers.editarBebida(bebVO);
+        bebPers.gravarBebida(bebVO);
     }
 }

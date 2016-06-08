@@ -48,11 +48,14 @@ public class BordaPers {
         }
     }
     
-    public void inserirBorda(BordaVO borVO){
+    public void gravarBorda(BordaVO borVO){
+        String sql;
         
-    }
-    
-    public void editarBorda(BordaVO borVO){
-        
+        if(borVO.getCodigo() == 0){
+            sql = "insert";
+        }else{
+            sql = "update";
+        }
+            
     }
 }

@@ -46,11 +46,12 @@ public class ClientePers {
         }
     }
     
-    public void inserirCliente(ClienteVO cliVO) {
-        
-    }
-
-    public void editarCliente(ClienteVO cliVO) {
-        
+    public void gravarCliente(ClienteVO cliVO) {
+        String sql;
+        if(cliVO.getCodigo() == 0){
+            sql = "insert";
+        }else{
+            sql = "update";
+        }
     }
 }

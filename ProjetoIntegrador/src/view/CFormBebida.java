@@ -7,7 +7,10 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import regraNegocio.BebidaRN;
+import vo.BebidaVO;
 
 /**
  *
@@ -134,8 +137,30 @@ public class CFormBebida extends TFormCadastro implements ActionListener{
     public void bGravarActionPerformed(ActionEvent evt) {
         int resposta = JOptionPane.showConfirmDialog(null, "Confirma o cadastro da bebida?","Cadastro de Bebidas", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if(resposta == 0){
-            JOptionPane.showMessageDialog(null, "Bebida cadastrada por sucesso.");
-            this.dispose();
+            try{
+                BebidaVO bebidaVO = new BebidaVO();
+                
+                if(tCodigo.getText() != null)
+                    bebidaVO.setCodigo(Integer.parseInt(tCodigo.getText()));
+                else
+                    bebidaVO.setCodigo(0);
+                bebidaVO.setMarca(tMarca.getText());
+                bebidaVO.setTipo((String)cbTipo.getSelectedItem());
+                bebidaVO.setVolume(Double.parseDouble(tVolume.getText()));
+                bebidaVO.setPreco(Double.parseDouble(tPreco.getText()));
+                bebidaVO.setStatus((String)cbStatus.getSelectedItem());
+                
+                BebidaRN bebidaRN = new BebidaRN();
+                bebidaRN.gravarBebida(bebidaVO);
+                
+                JOptionPane.showMessageDialog(null, "Bebida cadastrada por sucesso.");
+            } catch (SQLException sql){
+                
+            } catch (Exception e){
+                
+            }finally{
+                this.dispose();
+            }
         }
     }
 

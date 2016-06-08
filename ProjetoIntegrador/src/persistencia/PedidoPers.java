@@ -47,11 +47,7 @@ public class PedidoPers {
         }
     }
     
-    public void inserirPedido(PedidoVO pedVO){
-        
-    }
-    
-    public void editarPedido(PedidoVO pedVO){
+    public void gravarPedido(PedidoVO pedVO){
         
     }
 }

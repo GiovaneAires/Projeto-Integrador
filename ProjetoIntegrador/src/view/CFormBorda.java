@@ -7,7 +7,10 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import regraNegocio.BordaRN;
+import vo.BordaVO;
 
 /**
  *
@@ -126,9 +129,29 @@ public class CFormBorda extends TFormCadastro implements ActionListener{
 
     @Override
     public void bGravarActionPerformed(ActionEvent evt) {
-        int resposta = JOptionPane.showConfirmDialog(null, "Confirma o cadastro da borda?","Cadastro de Bordas", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if(resposta == 0){
-            JOptionPane.showMessageDialog(null, "Borda cadastrada com sucesso!");
+        try{
+            int resposta = JOptionPane.showConfirmDialog(null, "Confirma o cadastro da borda?","Cadastro de Bordas", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if(resposta == 0){
+                BordaVO bordaVO = new BordaVO();
+                if(tCodigo.getText() != null)
+                    bordaVO.setCodigo(Integer.parseInt(tCodigo.getText()));
+                else
+                    bordaVO.setCodigo(0);
+                bordaVO.setSabor(tSabor.getText());
+                bordaVO.setTipo((String)cbTipo.getSelectedItem());
+                bordaVO.setPreco(Double.parseDouble(tPreco.getText()));
+                bordaVO.setStatus((String)cbStatus.getSelectedItem());
+                
+                BordaRN bordaRN = new BordaRN();
+                bordaRN.gravarBorda(bordaVO);
+                
+                JOptionPane.showMessageDialog(null, "Borda cadastrada com sucesso!");
+            }
+        }catch (SQLException sql){
+            
+        }catch (Exception e){
+            
+        }finally{
             this.dispose();
         }
     }

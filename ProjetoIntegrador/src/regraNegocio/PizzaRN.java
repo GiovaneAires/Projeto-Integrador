@@ -24,13 +24,8 @@ public class PizzaRN {
         return pizPers.buscarPizza();
     }
     
-    public void inserirPizza(PizzaVO pizVO) throws SQLException, Exception{
+    public void gravarPizza(PizzaVO pizVO) throws SQLException, Exception{
         PizzaPers pizPers = new PizzaPers();
-        pizPers.inserirPizza(pizVO);
-    }
-    
-    public void editarPizza(PizzaVO pizVO) throws SQLException, Exception{
-        PizzaPers pizPers = new PizzaPers();
-        pizPers.editarPizza(pizVO);
+        pizPers.gravarPizza(pizVO);
     }
 }

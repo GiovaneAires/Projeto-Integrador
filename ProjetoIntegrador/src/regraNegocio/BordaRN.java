@@ -24,13 +24,8 @@ public class BordaRN {
         return borPers.buscarBorda();
     }
     
-    public void inserirBorda(BordaVO borVO) throws SQLException, Exception{
+    public void gravarBorda(BordaVO borVO) throws SQLException, Exception{
         BordaPers borPers = new BordaPers();
-        borPers.inserirBorda(borVO);
-    }
-    
-    public void editarBorda(BordaVO borVO) throws SQLException, Exception{
-        BordaPers borPers = new BordaPers();
-        borPers.editarBorda(borVO);
+        borPers.gravarBorda(borVO);
     }
 }

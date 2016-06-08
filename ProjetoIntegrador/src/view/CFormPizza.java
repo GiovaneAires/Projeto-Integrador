@@ -7,7 +7,10 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import regraNegocio.PizzaRN;
+import vo.PizzaVO;
 
 /**
  *
@@ -26,8 +29,29 @@ public class CFormPizza extends TFormCadastro implements ActionListener{
     public void bGravarActionPerformed(ActionEvent evt) {
         int resposta = JOptionPane.showConfirmDialog(null, "Confirma o cadastro da pizza?", "Cadastro de Pizza", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if(resposta == 0){
-            JOptionPane.showMessageDialog(null, "Pizza cadastrada com sucesso!");
-            this.dispose();
+            try{
+                PizzaVO pizzaVO = new PizzaVO();
+                if(tCodigo.getText() != null)
+                    pizzaVO.setCodigo(Integer.parseInt(tCodigo.getText()));
+                else
+                    pizzaVO.setCodigo(0);
+                pizzaVO.setSabor(tSabor.getText());
+                pizzaVO.setIngredientes(taIngredientes.getText());
+                pizzaVO.setTipo((String)cbTipo.getSelectedItem());
+                pizzaVO.setStatus((String)cbStatus.getSelectedItem());
+                pizzaVO.setPreco(Double.parseDouble(tPreco.getText()));
+                
+                PizzaRN pizzaRN = new PizzaRN();
+                pizzaRN.gravarPizza(pizzaVO);
+                
+                JOptionPane.showMessageDialog(null, "Pizza cadastrada com sucesso!");
+            }catch (SQLException sql){
+                
+            }catch (Exception e){
+                
+            }finally{
+                this.dispose();
+            }
         }
     }
 

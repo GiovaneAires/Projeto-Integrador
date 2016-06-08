@@ -50,11 +50,12 @@ public class PizzaPers {
         }
     }
     
-    public void inserirPizza(PizzaVO pizVO){
-        
-    }
-    
-    public void editarPizza(PizzaVO pizVO){
-        
+    public void gravarPizza(PizzaVO pizVO){
+        String sql;
+        if(pizVO.getCodigo() == 0){
+            sql = "insert";
+        }else{
+            sql = "update";
+        }
     }
 }

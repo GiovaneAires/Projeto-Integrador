@@ -47,11 +47,12 @@ public class BebidaPers {
         }
     }
         
-    public void inserirBebida(BebidaVO bebVO){
-        
-    }
-    
-    public void editarBebida(BebidaVO bebVO){
-        
+    public void gravarBebida(BebidaVO bebVO){
+        String sql;
+        if(bebVO.getCodigo() == 0){
+            sql = "insert";
+        }else{
+            sql = "update";
+        }
     }
 }

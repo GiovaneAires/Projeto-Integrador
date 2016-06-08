@@ -13,7 +13,7 @@ public class BebidaVO {
     private int codigo;
     private String marca;
     private String tipo;
-    private String volume;
+    private Double volume;
     private Double preco;
     private String status;
 
@@ -62,14 +62,14 @@ public class BebidaVO {
     /**
      * @return the volume
      */
-    public String getVolume() {
+    public Double getVolume() {
         return volume;
     }
 
     /**
      * @param volume the volume to set
      */
-    public void setVolume(String volume) {
+    public void setVolume(Double volume) {
         this.volume = volume;
     }
 

@@ -7,7 +7,10 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import regraNegocio.ClienteRN;
+import vo.ClienteVO;
 
 /**
  *
@@ -203,13 +206,39 @@ public class CFormCliente extends TFormCadastro implements ActionListener{
 
     @Override
     public void bGravarActionPerformed(ActionEvent evt) {
+        
         int resposta = JOptionPane.showConfirmDialog(null, "Confirma o cadastro do cliente?", "Cadastro de Clientes", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if(resposta == 0){
-            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
-            this.dispose();
+            try{
+                ClienteVO clienteVO = new ClienteVO();
+                if(tCodigo.getText() != null)
+                    clienteVO.setCodigo(Integer.parseInt(tCodigo.getText()));
+                else
+                    clienteVO.setCodigo(0);
+                clienteVO.setNome(tNome.getText());
+                clienteVO.setTelefone(tfTelefone.getText());
+                clienteVO.setLogradouro(tLogradouro.getText());
+                clienteVO.setNumero(Integer.parseInt(tNumero.getText()));
+                clienteVO.setBairro(tBairro.getText());
+                clienteVO.setCep(tfCep.getText());
+                clienteVO.setCidade(tCidade.getText());
+                clienteVO.setEstado((String)cbEstado.getSelectedItem());
+                clienteVO.setComplemento(tComplemento.getText());
+                clienteVO.setStatus((String)cbStatus.getSelectedItem());
+
+                ClienteRN clienteRN = new ClienteRN();
+                clienteRN.gravarCliente(clienteVO);            
+
+                JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+            } catch (SQLException sql){
+            
+            } catch (Exception e){
+            
+            }finally{
+                this.dispose();
+            }
         }
     }
-
     @Override
     public void bCancelarActionPerformed(ActionEvent evt) {
         int resposta = JOptionPane.showConfirmDialog(null, "Deseja mesmo cancelar a operação?", "Cadastro de Clientes", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);

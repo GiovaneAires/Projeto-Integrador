@@ -24,13 +24,8 @@ public class ClienteRN {
         return cliPers.buscarCliente();
     }
     
-    public void inserirCliente(ClienteVO cliVO) throws SQLException, Exception{
+    public void gravarCliente(ClienteVO cliVO) throws SQLException, Exception{
         ClientePers cliPers = new ClientePers();
-        cliPers.inserirCliente(cliVO);
-    }
-    
-    public void editarCliente(ClienteVO cliVO) throws SQLException, Exception{
-        ClientePers cliPers = new ClientePers();
-        cliPers.editarCliente(cliVO);
+        cliPers.gravarCliente(cliVO);
     }
 }

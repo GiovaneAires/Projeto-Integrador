@@ -24,13 +24,8 @@ public class PedidoRN {
         return pedPers.buscarPedido();
     }
     
-    public void inserirPedido(PedidoVO pedVO) throws SQLException, Exception{
+    public void gravarPedido(PedidoVO pedVO) throws SQLException, Exception{
         PedidoPers pedPers = new PedidoPers();
-        pedPers.inserirPedido(pedVO);
-    }
-    
-    public void editarPedido(PedidoVO pedVO) throws SQLException, Exception{
-        PedidoPers pedPers = new PedidoPers();
-        pedPers.editarPedido(pedVO);
+        pedPers.gravarPedido(pedVO);
     }
 }
