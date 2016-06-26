@@ -24,6 +24,15 @@ public class CFormBorda extends TFormCadastro implements ActionListener{
     public CFormBorda() {
         initComponents();
     }
+    
+    public CFormBorda(BordaVO bordaVO) {
+        initComponents();
+        tCodigo.setText(String.valueOf(bordaVO.getCodigo()));
+        tSabor.setText(String.valueOf(bordaVO.getSabor()));
+        cbTipo.setSelectedItem(bordaVO.getTipo());
+        tPreco.setText(String.valueOf(bordaVO.getPreco()));
+        cbStatus.setSelectedItem(bordaVO.getStatus());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -125,6 +134,7 @@ public class CFormBorda extends TFormCadastro implements ActionListener{
         getContentPane().add(pCentro, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     @Override
@@ -133,7 +143,7 @@ public class CFormBorda extends TFormCadastro implements ActionListener{
             int resposta = JOptionPane.showConfirmDialog(null, "Confirma o cadastro da borda?","Cadastro de Bordas", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if(resposta == 0){
                 BordaVO bordaVO = new BordaVO();
-                if(tCodigo.getText() != null)
+                if(!tCodigo.getText().isEmpty())
                     bordaVO.setCodigo(Integer.parseInt(tCodigo.getText()));
                 else
                     bordaVO.setCodigo(0);
@@ -148,9 +158,9 @@ public class CFormBorda extends TFormCadastro implements ActionListener{
                 JOptionPane.showMessageDialog(null, "Borda cadastrada com sucesso!");
             }
         }catch (SQLException sql){
-            
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL ao tentar cadastrar a borda. Erro: " + sql, "Cadastro de bordas", JOptionPane.ERROR_MESSAGE);
         }catch (Exception e){
-            
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar cadastrar a borda. Erro: " + e, "Cadastro de bordas", JOptionPane.ERROR_MESSAGE);
         }finally{
             this.dispose();
         }
@@ -159,10 +169,8 @@ public class CFormBorda extends TFormCadastro implements ActionListener{
     @Override
     public void bCancelarActionPerformed(ActionEvent evt) {
         int resposta = JOptionPane.showConfirmDialog(null, "Deseja mesmo cancelar a operação?","Cadastro de Bordas", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (resposta == 0){
-            JOptionPane.showMessageDialog(null, "Operação cancelada!");
+        if (resposta == 0)
             this.dispose();
-        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

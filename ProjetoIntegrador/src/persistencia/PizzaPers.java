@@ -17,45 +17,90 @@ import vo.PizzaVO;
  * @author Giovane
  */
 public class PizzaPers {
+    final int PIZZA = 1;
     Conexao conexao;
+        
     public PizzaPers(){
         this.conexao = new Conexao();
     }
     
-    public ArrayList <PizzaVO> buscarPizza() throws SQLException, Exception {
+    public ArrayList <PizzaVO> buscarPizza(PizzaVO pizzaVO) throws SQLException, Exception {
 
         ArrayList <PizzaVO> pizza = new ArrayList();
         
         try {
-
             Connection con;
             Statement stm;
             ResultSet consulta;
+            String sql;
             
             con = conexao.conectar();
             stm = con.createStatement();
-            consulta = stm.executeQuery("SELECT * FROM pizza;");
+            sql = "SELECT pro_codigo, pro_nome, pro_ingredientes, pro_tipo, pro_preco, pro_status "
+                    + "FROM produto "
+                    + "WHERE pro_identificador = " + PIZZA;
+             
+            if(pizzaVO.getCodigo() != 0)
+                sql = sql + " AND pro_codigo = " + pizzaVO.getCodigo(); 
 
+            if(pizzaVO.getSabor() != null)
+                sql = sql + " AND pro_nome LIKE '%" + pizzaVO.getSabor() + "%'";
+            
+            if(pizzaVO.getStatus() == "Ativo")
+                sql = sql + " AND pro_status = 'Ativo'";
+            
+            consulta = stm.executeQuery(sql);
+            
             while (consulta.next()) {
 
                 PizzaVO pizVO = new PizzaVO();
                 
+                pizVO.setCodigo(consulta.getInt("pro_codigo"));
+                pizVO.setSabor(consulta.getString("pro_nome"));
+                pizVO.setIngredientes(consulta.getString("pro_ingredientes"));
+                pizVO.setTipo(consulta.getString("pro_tipo"));
+                pizVO.setPreco(consulta.getDouble("pro_preco"));
+                pizVO.setStatus(consulta.getString("pro_status"));
+                
                 pizza.add(pizVO);
             }
-
-        } finally {
-
-            conexao.desconectar();
             return pizza;
+        } finally {
+            conexao.desconectar();   
         }
     }
     
-    public void gravarPizza(PizzaVO pizVO){
-        String sql;
-        if(pizVO.getCodigo() == 0){
-            sql = "insert";
-        }else{
-            sql = "update";
+    public void gravarPizza(PizzaVO pizVO) throws SQLException, Exception{
+        try {
+            Connection con;
+            Statement stm;
+            String sql;
+            
+            con = conexao.conectar();
+            stm = con.createStatement();
+             
+            if(pizVO.getCodigo() == 0){
+                sql = "INSERT INTO produto (pro_identificador, pro_nome, pro_tipo, pro_ingredientes, pro_preco, pro_status) VALUES ("
+                        + PIZZA + ", "
+                        + "'" + pizVO.getSabor()+ "', "
+                        + "'" + pizVO.getTipo() + "', "
+                        + "'" + pizVO.getIngredientes()+ "', "
+                        + pizVO.getPreco() + ", "
+                        + "'" + pizVO.getStatus() + "'"
+                        + ");";
+            }else{
+                sql = "UPDATE produto SET "
+                        + "pro_nome = '" + pizVO.getSabor()+ "', "
+                        + "pro_tipo = '" + pizVO.getTipo() + "', "
+                        + "pro_ingredientes = '" + pizVO.getIngredientes()+ "', "
+                        + "pro_preco = " + pizVO.getPreco() + ", "
+                        + "pro_status = '" + pizVO.getStatus() + "' "
+                        + "WHERE pro_codigo = " + pizVO.getCodigo();
+            }
+            
+            stm.executeUpdate(sql);
+        }finally{
+            conexao.desconectar();
         }
     }
 }

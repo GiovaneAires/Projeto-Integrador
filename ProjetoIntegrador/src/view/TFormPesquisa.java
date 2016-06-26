@@ -150,7 +150,7 @@ public abstract class TFormPesquisa extends javax.swing.JFrame {
     protected javax.swing.JLabel lDescricao;
     private javax.swing.JPanel pNorte;
     private javax.swing.JPanel pSul;
-    private javax.swing.JTextField tCodigo;
-    private javax.swing.JTextField tDescricao;
+    protected javax.swing.JTextField tCodigo;
+    protected javax.swing.JTextField tDescricao;
     // End of variables declaration//GEN-END:variables
 }

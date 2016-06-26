@@ -6,6 +6,11 @@
 package view;
 
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import regraNegocio.ClienteRN;
+import vo.ClienteVO;
 
 /**
  *
@@ -39,17 +44,17 @@ public class PFormCliente extends TFormPesquisa implements ActionListener{
 
         tbCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Código", "Nome", "Telefone", "Endereço"
+                "Código", "Nome", "Telefone", "Status", "Endereço"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -78,11 +83,46 @@ public class PFormCliente extends TFormPesquisa implements ActionListener{
         getContentPane().add(pCenter, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     @Override
     public void bPesquisarActionPerformed(java.awt.event.ActionEvent evt) {
-        
+        try{
+            ClienteVO clienteVO = new ClienteVO();
+            
+            if(!tCodigo.getText().isEmpty())
+                clienteVO.setCodigo(Integer.parseInt(tCodigo.getText()));
+            else clienteVO.setCodigo(0);
+            
+            if(!tDescricao.getText().isEmpty())
+                clienteVO.setNome((tDescricao.getText()));
+            else clienteVO.setNome(null);
+            
+            ClienteRN clienteRN = new ClienteRN();
+            ArrayList<ClienteVO> cliente = clienteRN.buscarCliente(clienteVO);
+            
+            if(!cliente.isEmpty()){
+                javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) tbCliente.getModel();
+                dtm.fireTableDataChanged();
+                dtm.setRowCount(0);
+
+                for(ClienteVO cliVO : cliente){
+                    String[] linha = {"" + cliVO.getCodigo(), "" 
+                                         + cliVO.getNome(), "" 
+                                         + cliVO.getTelefone(), "" 
+                                         + cliVO.getStatus(), "" + ""
+                                         + cliVO.getBairro() + ", " + cliVO.getLogradouro() + ", " + cliVO.getNumero() + ""};
+                    dtm.addRow(linha);
+                }
+            }else
+                JOptionPane.showMessageDialog(null, "Nenhum registro encontrado.", "Pesquisa de Clientes", JOptionPane.INFORMATION_MESSAGE);
+            
+        }catch (SQLException sql){
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL na pesquisa de clientes. Erro: " + sql, "Pesquisar Clientes", JOptionPane.ERROR_MESSAGE);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro na pesquisa de clientes. Erro: " + e, "Pesquisar Clientes", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     @Override
@@ -93,8 +133,36 @@ public class PFormCliente extends TFormPesquisa implements ActionListener{
     
     @Override
     public void bEditarActionPerformed(java.awt.event.ActionEvent evt) {
-        CFormCliente cFormCliente = new CFormCliente();
-        cFormCliente.setVisible(true);
+        if(tbCliente.getSelectedRowCount() == 1){
+            
+            ClienteVO clienteVO = new ClienteVO();
+            clienteVO.setCodigo(Integer.parseInt((String) tbCliente.getValueAt(tbCliente.getSelectedRow(), 0)));
+            
+            try{
+                ClienteRN clienteRN = new ClienteRN();
+                ArrayList<ClienteVO> cliente = clienteRN.buscarCliente(clienteVO);
+                
+                for(ClienteVO cliVO : cliente){
+                    clienteVO.setNome(cliVO.getNome());
+                    clienteVO.setTelefone(cliVO.getTelefone());
+                    clienteVO.setLogradouro(cliVO.getLogradouro());
+                    clienteVO.setNumero(cliVO.getNumero());
+                    clienteVO.setBairro(cliVO.getBairro());
+                    clienteVO.setCep(cliVO.getCep());
+                    clienteVO.setCidade(cliVO.getCidade());
+                    clienteVO.setEstado(cliVO.getEstado());
+                    clienteVO.setComplemento(cliVO.getComplemento());
+                    clienteVO.setStatus(cliVO.getStatus());
+                }
+            }catch(Exception e){
+                
+            }
+            CFormCliente cFormCliente = new CFormCliente(clienteVO);
+            cFormCliente.setVisible(true);
+        }else
+            JOptionPane.showMessageDialog(null, "Selecione um cliente para editar.", "Edição de Cliente", JOptionPane.INFORMATION_MESSAGE);
+        
+        
     }  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

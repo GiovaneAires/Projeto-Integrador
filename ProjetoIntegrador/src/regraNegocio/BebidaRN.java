@@ -20,9 +20,9 @@ public class BebidaRN {
         
     }
     
-    public ArrayList<BebidaVO> buscarBebida() throws SQLException, Exception{
+    public ArrayList<BebidaVO> buscarBebida(BebidaVO bebidaVO) throws SQLException, Exception{
         BebidaPers bebPers = new BebidaPers();
-        return bebPers.buscarBebida();
+        return bebPers.buscarBebida(bebidaVO);
     }
     
     public void gravarBebida(BebidaVO bebVO) throws SQLException, Exception{

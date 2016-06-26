@@ -13,6 +13,7 @@ import java.util.Date;
  */
 public class PedidoVO {
     private int codigo;
+    private int codigoCliente;
     private Date dataHora;
     private Double valorTotal;
 
@@ -28,6 +29,20 @@ public class PedidoVO {
      */
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+    
+    /**
+     * @return the codigoCliente
+     */
+    public int getCodigoCliente() {
+        return codigoCliente;
+    }
+
+    /**
+     * @param codigoCliente the codigo to set
+     */
+    public void setCodigoCliente(int codigoCliente) {
+        this.codigoCliente = codigoCliente;
     }
 
     /**

@@ -140,6 +140,7 @@ public class RFormRelatorioPedidoPorPeriodo extends javax.swing.JFrame {
         getContentPane().add(pCentro, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

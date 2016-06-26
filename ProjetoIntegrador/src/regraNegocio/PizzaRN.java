@@ -19,9 +19,9 @@ public class PizzaRN {
         
     }
     
-    public ArrayList<PizzaVO> buscarPizza() throws SQLException, Exception{
+    public ArrayList<PizzaVO> buscarPizza(PizzaVO pizzaVO) throws SQLException, Exception{
         PizzaPers pizPers = new PizzaPers();
-        return pizPers.buscarPizza();
+        return pizPers.buscarPizza(pizzaVO);
     }
     
     public void gravarPizza(PizzaVO pizVO) throws SQLException, Exception{

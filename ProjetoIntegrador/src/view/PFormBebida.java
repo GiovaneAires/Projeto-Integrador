@@ -6,6 +6,11 @@
 package view;
 
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import regraNegocio.BebidaRN;
+import vo.BebidaVO;
 
 /**
  *
@@ -17,6 +22,7 @@ public class PFormBebida extends TFormPesquisa implements ActionListener{
      * Creates new form PFormBebida
      */
     public PFormBebida() {
+        lDescricao.setText("Marca:");
         initComponents();
     }
 
@@ -38,17 +44,17 @@ public class PFormBebida extends TFormPesquisa implements ActionListener{
 
         tbBebida.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Descrição", "Tipo", "Volume", "Preço"
+                "Código", "Descrição", "Tipo", "Volume", "Preço", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -77,11 +83,46 @@ public class PFormBebida extends TFormPesquisa implements ActionListener{
         getContentPane().add(pCenter, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     @Override
     public void bPesquisarActionPerformed(java.awt.event.ActionEvent evt) {
-        
+        try{
+            BebidaVO bebidaVO = new BebidaVO();
+            
+            if(!tCodigo.getText().isEmpty())
+                bebidaVO.setCodigo(Integer.parseInt(tCodigo.getText()));
+            else bebidaVO.setCodigo(0);
+            
+            if(!tDescricao.getText().isEmpty())
+                bebidaVO.setMarca((tDescricao.getText()));
+            else bebidaVO.setMarca(null);
+            
+            BebidaRN bebidaRN = new BebidaRN();
+            ArrayList<BebidaVO> bebida = bebidaRN.buscarBebida(bebidaVO);
+            
+            if(!bebida.isEmpty()){
+                javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) tbBebida.getModel();
+                dtm.fireTableDataChanged();
+                dtm.setRowCount(0);
+
+                for(BebidaVO bebVO : bebida){
+                    String[] linha = {"" + bebVO.getCodigo(), "" 
+                                         + bebVO.getMarca(), "" 
+                                         + bebVO.getTipo(), "" 
+                                         + bebVO.getVolume(), "" 
+                                         + bebVO.getPreco(), "" + "" 
+                                         + bebVO.getStatus(), ""};
+                    dtm.addRow(linha);
+                }
+            }else
+                JOptionPane.showMessageDialog(null, "Nenhum registro encontrado.", "Pesquisa de Bebidas", JOptionPane.INFORMATION_MESSAGE);
+        }catch (SQLException sql){
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL na pesquisa de bebidas. Erro: " + sql, "Pesquisar Bebidas", JOptionPane.ERROR_MESSAGE);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro na pesquisa de bebidas. Erro: " + e, "Pesquisar Bebidas", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     @Override
@@ -92,8 +133,22 @@ public class PFormBebida extends TFormPesquisa implements ActionListener{
     
     @Override
     public void bEditarActionPerformed(java.awt.event.ActionEvent evt) {
-        CFormBebida cFormBebida = new CFormBebida();
-        cFormBebida.setVisible(true);
+        
+        if(tbBebida.getSelectedRowCount() == 1){
+            
+            BebidaVO bebidaVO = new BebidaVO();
+            
+            bebidaVO.setCodigo(Integer.parseInt((String) tbBebida.getValueAt(tbBebida.getSelectedRow(), 0)));
+            bebidaVO.setMarca((String) tbBebida.getValueAt(tbBebida.getSelectedRow(), 1));
+            bebidaVO.setTipo((String) tbBebida.getValueAt(tbBebida.getSelectedRow(), 2));
+            bebidaVO.setPreco(Double.parseDouble((String) tbBebida.getValueAt(tbBebida.getSelectedRow(), 3)));
+            bebidaVO.setVolume(Double.parseDouble((String) tbBebida.getValueAt(tbBebida.getSelectedRow(), 4)));
+            bebidaVO.setStatus((String) tbBebida.getValueAt(tbBebida.getSelectedRow(), 5));
+            
+            CFormBebida cFormBebida = new CFormBebida(bebidaVO);
+            cFormBebida.setVisible(true);
+        }else
+            JOptionPane.showMessageDialog(null, "Selecione uma bebida para editar.", "Edição de Bebida", JOptionPane.INFORMATION_MESSAGE);
     }  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

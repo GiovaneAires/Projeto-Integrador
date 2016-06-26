@@ -140,6 +140,7 @@ public class RFormRelatorioPedidoPorCliente extends javax.swing.JFrame {
         getContentPane().add(pSul, java.awt.BorderLayout.PAGE_END);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -128,6 +128,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         setJMenuBar(menu);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void miBordasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miBordasActionPerformed

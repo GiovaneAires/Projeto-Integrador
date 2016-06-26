@@ -24,6 +24,21 @@ public class CFormCliente extends TFormCadastro implements ActionListener{
     public CFormCliente() {
         initComponents();
     }
+    
+    public CFormCliente(ClienteVO clienteVO) {
+        initComponents();
+        tCodigo.setText(String.valueOf(clienteVO.getCodigo()));
+        tNome.setText(clienteVO.getNome());
+        tfTelefone.setText(clienteVO.getTelefone());
+        tLogradouro.setText(clienteVO.getLogradouro());
+        tNumero.setText(String.valueOf(clienteVO.getNumero()));
+        tBairro.setText(clienteVO.getBairro());
+        tfCep.setText(clienteVO.getCep());
+        tCidade.setText(clienteVO.getCidade());
+        cbEstado.setSelectedItem(clienteVO.getEstado());
+        tComplemento.setText(clienteVO.getComplemento());
+        cbStatus.setSelectedItem(clienteVO.getStatus());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -202,6 +217,7 @@ public class CFormCliente extends TFormCadastro implements ActionListener{
         getContentPane().add(pCentro, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     @Override
@@ -211,7 +227,8 @@ public class CFormCliente extends TFormCadastro implements ActionListener{
         if(resposta == 0){
             try{
                 ClienteVO clienteVO = new ClienteVO();
-                if(tCodigo.getText() != null)
+                
+                if(!tCodigo.getText().isEmpty())
                     clienteVO.setCodigo(Integer.parseInt(tCodigo.getText()));
                 else
                     clienteVO.setCodigo(0);
@@ -231,9 +248,9 @@ public class CFormCliente extends TFormCadastro implements ActionListener{
 
                 JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
             } catch (SQLException sql){
-            
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL ao tentar cadastrar o cliente. Erro: " + sql, "Cadastro de cliente", JOptionPane.ERROR_MESSAGE);
             } catch (Exception e){
-            
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar cadastrar o cliente. Erro: " + e, "Cadastro de cliente", JOptionPane.ERROR_MESSAGE);
             }finally{
                 this.dispose();
             }
@@ -242,10 +259,8 @@ public class CFormCliente extends TFormCadastro implements ActionListener{
     @Override
     public void bCancelarActionPerformed(ActionEvent evt) {
         int resposta = JOptionPane.showConfirmDialog(null, "Deseja mesmo cancelar a operação?", "Cadastro de Clientes", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (resposta == 0){
-            JOptionPane.showMessageDialog(null, "Operação cancelada!");
+        if (resposta == 0)
             this.dispose();
-        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

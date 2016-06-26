@@ -19,9 +19,9 @@ public class BordaRN {
         
     }
     
-    public ArrayList<BordaVO> buscarBorda() throws SQLException, Exception{
+    public ArrayList<BordaVO> buscarBorda(BordaVO bordaVO) throws SQLException, Exception{
         BordaPers borPers = new BordaPers();
-        return borPers.buscarBorda();
+        return borPers.buscarBorda(bordaVO);
     }
     
     public void gravarBorda(BordaVO borVO) throws SQLException, Exception{

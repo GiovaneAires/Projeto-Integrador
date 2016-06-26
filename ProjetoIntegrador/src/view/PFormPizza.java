@@ -6,6 +6,11 @@
 package view;
 
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import regraNegocio.PizzaRN;
+import vo.PizzaVO;
 
 /**
  *
@@ -38,15 +43,23 @@ public class PFormPizza extends TFormPesquisa implements ActionListener{
 
         tbPizza.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Código", "Descrição", "Preço", "Title 4"
+                "Código", "Sabor", "Tipo", "Preço", "Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tbPizza);
 
         javax.swing.GroupLayout pCenterLayout = new javax.swing.GroupLayout(pCenter);
@@ -69,6 +82,7 @@ public class PFormPizza extends TFormPesquisa implements ActionListener{
         getContentPane().add(pCenter, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -77,7 +91,40 @@ public class PFormPizza extends TFormPesquisa implements ActionListener{
     
     @Override
     public void bPesquisarActionPerformed(java.awt.event.ActionEvent evt) {
-        
+        try{
+            PizzaVO pizzaVO = new PizzaVO();
+            
+            if(!tCodigo.getText().isEmpty())
+                pizzaVO.setCodigo(Integer.parseInt(tCodigo.getText()));
+            else pizzaVO.setCodigo(0);
+            
+            if(!tDescricao.getText().isEmpty())
+                pizzaVO.setSabor((tDescricao.getText()));
+            else pizzaVO.setSabor(null);
+            
+            PizzaRN pizzaRN = new PizzaRN();
+            ArrayList<PizzaVO> pizza = pizzaRN.buscarPizza(pizzaVO);
+            
+            if(!pizza.isEmpty()){
+                javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) tbPizza.getModel();
+                dtm.fireTableDataChanged();
+                dtm.setRowCount(0);
+
+                for(PizzaVO pizVO : pizza){
+                    String[] linha = {"" + pizVO.getCodigo(), "" 
+                                         + pizVO.getSabor(), "" 
+                                         + pizVO.getTipo(), "" 
+                                         + pizVO.getPreco(), "" + ""
+                                         + pizVO.getStatus(), ""};
+                    dtm.addRow(linha);
+                }
+            }else
+                JOptionPane.showMessageDialog(null, "Nenhum registro encontrado.", "Pesquisa de Pizza", JOptionPane.INFORMATION_MESSAGE);
+        }catch (SQLException sql){
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL na pesquisa de pizzas. Erro: " + sql, "Pesquisar Pizza", JOptionPane.ERROR_MESSAGE);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro na pesquisa de pizzas. Erro: " + e, "Pesquisar Pizza", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     @Override
@@ -88,8 +135,31 @@ public class PFormPizza extends TFormPesquisa implements ActionListener{
     
     @Override
     public void bEditarActionPerformed(java.awt.event.ActionEvent evt) {
-        CFormPizza cFormPizza = new CFormPizza();
-        cFormPizza.setVisible(true);
+        if(tbPizza.getSelectedRowCount() == 1){
+            
+            PizzaVO pizzaVO = new PizzaVO();
+            pizzaVO.setCodigo(Integer.parseInt((String) tbPizza.getValueAt(tbPizza.getSelectedRow(), 0)));
+            
+            try{
+                PizzaRN pizzaRN = new PizzaRN();
+                ArrayList<PizzaVO> pizza = pizzaRN.buscarPizza(pizzaVO);
+                
+                for(PizzaVO pizVO : pizza){
+                    pizzaVO.setSabor(pizVO.getSabor());
+                    pizzaVO.setIngredientes(pizVO.getIngredientes());
+                    pizzaVO.setTipo(pizVO.getTipo());
+                    pizzaVO.setPreco(pizVO.getPreco());
+                    pizzaVO.setStatus(pizVO.getStatus());
+                }
+            }catch(Exception e){
+                
+            }
+            
+            CFormPizza cFormPizza = new CFormPizza(pizzaVO);
+            cFormPizza.setVisible(true);
+        }else
+            JOptionPane.showMessageDialog(null, "Selecione uma pizza para editar.", "Edição de Pizza", JOptionPane.INFORMATION_MESSAGE);
+        
     }    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -6,6 +6,11 @@
 package view;
 
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import regraNegocio.BordaRN;
+import vo.BordaVO;
 
 /**
  *
@@ -38,15 +43,23 @@ public class PFormBorda extends TFormPesquisa implements ActionListener{
 
         tbBorda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Código", "Descrição", "Preço", "Title 4"
+                "Código", "Sabor", "Tipo", "Preço", "Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tbBorda);
 
         javax.swing.GroupLayout pCentroLayout = new javax.swing.GroupLayout(pCentro);
@@ -69,11 +82,46 @@ public class PFormBorda extends TFormPesquisa implements ActionListener{
         getContentPane().add(pCentro, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     @Override
     public void bPesquisarActionPerformed(java.awt.event.ActionEvent evt) {
-        
+        try{
+            BordaVO bordaVO = new BordaVO();
+            
+            if(!tCodigo.getText().isEmpty())
+                bordaVO.setCodigo(Integer.parseInt(tCodigo.getText()));
+            else bordaVO.setCodigo(0);
+            
+            if(!tDescricao.getText().isEmpty())
+                bordaVO.setSabor((tDescricao.getText()));
+            else bordaVO.setSabor(null);
+            
+            BordaRN bordaRN = new BordaRN();
+            ArrayList<BordaVO> borda = bordaRN.buscarBorda(bordaVO);
+            
+            if(!borda.isEmpty()){
+                javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) tbBorda.getModel();
+                dtm.fireTableDataChanged();
+                dtm.setRowCount(0);
+
+                for(BordaVO borVO : borda){
+                    String[] linha = {"" + borVO.getCodigo(), "" 
+                                         + borVO.getSabor(), "" 
+                                         + borVO.getTipo(), "" 
+                                         + borVO.getPreco(), "" + ""
+                                         + borVO.getStatus(), ""};
+                    dtm.addRow(linha);
+                }
+            }else
+                JOptionPane.showMessageDialog(null, "Nenhum registro encontrado.", "Pesquisa de Bordas", JOptionPane.INFORMATION_MESSAGE);
+            
+        }catch (SQLException sql){
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL na pesquisa de bordas. Erro: " + sql, "Pesquisar Bordas", JOptionPane.ERROR_MESSAGE);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro na pesquisa de bordas. Erro: " + e, "Pesquisar Bordas", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     @Override
@@ -84,8 +132,20 @@ public class PFormBorda extends TFormPesquisa implements ActionListener{
     
     @Override
     public void bEditarActionPerformed(java.awt.event.ActionEvent evt) {
-        CFormBorda cFormBorda = new CFormBorda();
-        cFormBorda.setVisible(true);
+        if(tbBorda.getSelectedRowCount() == 1){
+            
+            BordaVO bordaVO = new BordaVO();
+            
+            bordaVO.setCodigo(Integer.parseInt((String) tbBorda.getValueAt(tbBorda.getSelectedRow(), 0)));
+            bordaVO.setSabor((String) tbBorda.getValueAt(tbBorda.getSelectedRow(), 1));
+            bordaVO.setTipo((String) tbBorda.getValueAt(tbBorda.getSelectedRow(), 2));
+            bordaVO.setPreco(Double.parseDouble((String) tbBorda.getValueAt(tbBorda.getSelectedRow(), 3)));
+            bordaVO.setStatus((String) tbBorda.getValueAt(tbBorda.getSelectedRow(), 4));
+            
+            CFormBorda cFormBorda = new CFormBorda(bordaVO);
+            cFormBorda.setVisible(true);
+        }else
+            JOptionPane.showMessageDialog(null, "Selecione uma borda para editar.", "Edição de Borda", JOptionPane.INFORMATION_MESSAGE);
     }  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

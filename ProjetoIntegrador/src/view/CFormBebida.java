@@ -24,6 +24,16 @@ public class CFormBebida extends TFormCadastro implements ActionListener{
     public CFormBebida() {
         initComponents();
     }
+    
+    public CFormBebida(BebidaVO bebidaVO) {
+        initComponents();
+        tCodigo.setText(String.valueOf(bebidaVO.getCodigo()));
+        tMarca.setText(bebidaVO.getMarca());
+        tTipo.setText(bebidaVO.getTipo());
+        tVolume.setText(String.valueOf(bebidaVO.getVolume()));
+        tPreco.setText(String.valueOf(bebidaVO.getPreco()));
+        cbStatus.setSelectedItem(bebidaVO.getStatus());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,8 +55,8 @@ public class CFormBebida extends TFormCadastro implements ActionListener{
         tMarca = new javax.swing.JTextField();
         tPreco = new javax.swing.JTextField();
         cbStatus = new javax.swing.JComboBox<>();
-        cbTipo = new javax.swing.JComboBox<>();
         tVolume = new javax.swing.JTextField();
+        tTipo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro Bebida");
@@ -67,8 +77,6 @@ public class CFormBebida extends TFormCadastro implements ActionListener{
 
         cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Inativo" }));
 
-        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Água", "Refrigerante", "Suco" }));
-
         javax.swing.GroupLayout pCentroLayout = new javax.swing.GroupLayout(pCentro);
         pCentro.setLayout(pCentroLayout);
         pCentroLayout.setHorizontalGroup(
@@ -83,7 +91,7 @@ public class CFormBebida extends TFormCadastro implements ActionListener{
                         .addGap(28, 28, 28)
                         .addComponent(lTipo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lVolume)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -117,8 +125,8 @@ public class CFormBebida extends TFormCadastro implements ActionListener{
                     .addComponent(lMarca)
                     .addComponent(lVolume)
                     .addComponent(tMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lPreco)
@@ -131,6 +139,7 @@ public class CFormBebida extends TFormCadastro implements ActionListener{
         getContentPane().add(pCentro, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     @Override
@@ -140,12 +149,12 @@ public class CFormBebida extends TFormCadastro implements ActionListener{
             try{
                 BebidaVO bebidaVO = new BebidaVO();
                 
-                if(tCodigo.getText() != null)
+                if(!tCodigo.getText().isEmpty())
                     bebidaVO.setCodigo(Integer.parseInt(tCodigo.getText()));
                 else
                     bebidaVO.setCodigo(0);
                 bebidaVO.setMarca(tMarca.getText());
-                bebidaVO.setTipo((String)cbTipo.getSelectedItem());
+                bebidaVO.setTipo(tTipo.getText());
                 bebidaVO.setVolume(Double.parseDouble(tVolume.getText()));
                 bebidaVO.setPreco(Double.parseDouble(tPreco.getText()));
                 bebidaVO.setStatus((String)cbStatus.getSelectedItem());
@@ -155,9 +164,9 @@ public class CFormBebida extends TFormCadastro implements ActionListener{
                 
                 JOptionPane.showMessageDialog(null, "Bebida cadastrada por sucesso.");
             } catch (SQLException sql){
-                
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL ao tentar cadastrar a bebida. Erro: " + sql, "Cadastro de bebidas", JOptionPane.ERROR_MESSAGE);
             } catch (Exception e){
-                
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar cadastrar a bebida. Erro: " + e, "Cadastro de bebidas", JOptionPane.ERROR_MESSAGE);
             }finally{
                 this.dispose();
             }
@@ -167,15 +176,12 @@ public class CFormBebida extends TFormCadastro implements ActionListener{
     @Override
     public void bCancelarActionPerformed(ActionEvent evt) {
         int resposta = JOptionPane.showConfirmDialog(null, "Deseja mesmo cancelar a operação?","Cadastro de Bebidas", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (resposta == 0){
-            JOptionPane.showMessageDialog(null, "Operação cancelada!");
+        if (resposta == 0)
             this.dispose();
-        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbStatus;
-    private javax.swing.JComboBox<String> cbTipo;
     private javax.swing.JLabel lCodigo;
     private javax.swing.JLabel lMarca;
     private javax.swing.JLabel lPreco;
@@ -186,6 +192,7 @@ public class CFormBebida extends TFormCadastro implements ActionListener{
     private javax.swing.JTextField tCodigo;
     private javax.swing.JTextField tMarca;
     private javax.swing.JTextField tPreco;
+    private javax.swing.JTextField tTipo;
     private javax.swing.JTextField tVolume;
     // End of variables declaration//GEN-END:variables
 }

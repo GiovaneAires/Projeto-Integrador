@@ -24,6 +24,16 @@ public class CFormPizza extends TFormCadastro implements ActionListener{
     public CFormPizza() {
         initComponents();
     }
+    
+    public CFormPizza(PizzaVO pizzaVO) {
+        initComponents();
+        tCodigo.setText(String.valueOf(pizzaVO.getCodigo()));
+        tSabor.setText(pizzaVO.getSabor());
+        taIngredientes.setText(pizzaVO.getIngredientes());
+        cbTipo.setSelectedItem(pizzaVO.getTipo());
+        tPreco.setText(String.valueOf(pizzaVO.getPreco()));
+        cbStatus.setSelectedItem(pizzaVO.getStatus());
+    }
 
     @Override
     public void bGravarActionPerformed(ActionEvent evt) {
@@ -31,7 +41,7 @@ public class CFormPizza extends TFormCadastro implements ActionListener{
         if(resposta == 0){
             try{
                 PizzaVO pizzaVO = new PizzaVO();
-                if(tCodigo.getText() != null)
+                if(!tCodigo.getText().isEmpty())
                     pizzaVO.setCodigo(Integer.parseInt(tCodigo.getText()));
                 else
                     pizzaVO.setCodigo(0);
@@ -46,9 +56,9 @@ public class CFormPizza extends TFormCadastro implements ActionListener{
                 
                 JOptionPane.showMessageDialog(null, "Pizza cadastrada com sucesso!");
             }catch (SQLException sql){
-                
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL ao tentar cadastrar a pizza. Erro: " + sql, "Cadastro de pizza", JOptionPane.ERROR_MESSAGE);
             }catch (Exception e){
-                
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar cadastrar a pizza. Erro: " + e, "Cadastro de pizza", JOptionPane.ERROR_MESSAGE);
             }finally{
                 this.dispose();
             }
@@ -58,10 +68,8 @@ public class CFormPizza extends TFormCadastro implements ActionListener{
     @Override
     public void bCancelarActionPerformed(ActionEvent evt) {
         int resposta = JOptionPane.showConfirmDialog(null, "Deseja mesmo cancelar a operação?", "Cadastro de Pizza", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if(resposta == 0){
-            JOptionPane.showMessageDialog(null, "Operação cancelada.");
+        if(resposta == 0)
             this.dispose();
-        }
     }
     
     /**
@@ -195,6 +203,7 @@ public class CFormPizza extends TFormCadastro implements ActionListener{
         getContentPane().add(pCentro, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tSaborActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tSaborActionPerformed

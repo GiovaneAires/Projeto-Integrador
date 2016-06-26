@@ -19,9 +19,9 @@ public class ClienteRN {
         
     }
     
-    public ArrayList<ClienteVO> buscarCliente() throws SQLException, Exception{
+    public ArrayList<ClienteVO> buscarCliente(ClienteVO clienteVO) throws SQLException, Exception{
         ClientePers cliPers = new ClientePers();
-        return cliPers.buscarCliente();
+        return cliPers.buscarCliente(clienteVO);
     }
     
     public void gravarCliente(ClienteVO cliVO) throws SQLException, Exception{
