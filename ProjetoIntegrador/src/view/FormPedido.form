@@ -91,9 +91,7 @@
                           <Component id="bPesquisar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="bEditar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="bCadastrar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="288" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="223" max="-2" attributes="0"/>
@@ -127,7 +125,6 @@
                       <Component id="lTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bEditar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -190,14 +187,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bPesquisarActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="bCadastrar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Cadastrar Novo"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bCadastrarActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bEditar">

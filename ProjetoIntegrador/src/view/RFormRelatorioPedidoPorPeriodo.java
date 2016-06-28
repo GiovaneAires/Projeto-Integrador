@@ -5,6 +5,15 @@
  */
 package view;
 
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import regraNegocio.ArquivoRN;
+import regraNegocio.PedidoRN;
+import vo.RelatorioVO;
+
 /**
  *
  * @author Giovane
@@ -47,6 +56,11 @@ public class RFormRelatorioPedidoPorPeriodo extends javax.swing.JFrame {
         lDataFinal.setText("Data Final:");
 
         bPesquisar.setText("Pesquisar");
+        bPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pNorteLayout = new javax.swing.GroupLayout(pNorte);
         pNorte.setLayout(pNorteLayout);
@@ -85,6 +99,11 @@ public class RFormRelatorioPedidoPorPeriodo extends javax.swing.JFrame {
         getContentPane().add(pNorte, java.awt.BorderLayout.NORTH);
 
         bGerar.setText("Gerar Relatório");
+        bGerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bGerarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pSulLayout = new javax.swing.GroupLayout(pSul);
         pSul.setLayout(pSulLayout);
@@ -109,15 +128,20 @@ public class RFormRelatorioPedidoPorPeriodo extends javax.swing.JFrame {
 
         tbPedidoPeriodo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Cliente", "Descrição", "Data", "Preço"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tbPedidoPeriodo);
 
         javax.swing.GroupLayout pCentroLayout = new javax.swing.GroupLayout(pCentro);
@@ -143,6 +167,45 @@ public class RFormRelatorioPedidoPorPeriodo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPesquisarActionPerformed
+        RelatorioVO relatorioVO = new RelatorioVO();
+        try{
+            if(!dtInicial.getDate().toString().isEmpty() && !dtFinal.getDate().toString().isEmpty()){
+                relatorioVO.setDataI(dtInicial.getDate());
+                relatorioVO.setDataF(dtFinal.getDate());
+
+                PedidoRN pedidoRN = new PedidoRN();
+                ArrayList<RelatorioVO> dadosRelatorio = pedidoRN.gerarRelatorioPeriodo(relatorioVO);
+                
+                javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) tbPedidoPeriodo.getModel();
+                dtm.fireTableDataChanged();
+                dtm.setRowCount(0);
+                
+                for(RelatorioVO relVO : dadosRelatorio){
+                    String[] linha = {"" + relVO.getCliente(), "" 
+                                         + relVO.getDescricao(), "" 
+                                         + relVO.getDataI(), "" + ""
+                                         + relVO.getPreco(), ""};
+                    dtm.addRow(linha);
+                }
+
+            }else JOptionPane.showMessageDialog(null, "É necessário informar o período para gerar o relatório.");
+        }catch(SQLException sql){
+            
+        }catch(Exception e){
+            
+        }
+    }//GEN-LAST:event_bPesquisarActionPerformed
+
+    private void bGerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGerarActionPerformed
+        ArquivoRN arquivo = new ArquivoRN();
+        arquivo.gerarRelatorioPorPeriodo(this);
+        
+        javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) tbPedidoPeriodo.getModel();
+        dtm.fireTableDataChanged();
+        dtm.setRowCount(0);
+    }//GEN-LAST:event_bGerarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bGerar;
     private javax.swing.JButton bPesquisar;
@@ -155,6 +218,6 @@ public class RFormRelatorioPedidoPorPeriodo extends javax.swing.JFrame {
     private javax.swing.JPanel pCentro;
     private javax.swing.JPanel pNorte;
     private javax.swing.JPanel pSul;
-    private javax.swing.JTable tbPedidoPeriodo;
+    public javax.swing.JTable tbPedidoPeriodo;
     // End of variables declaration//GEN-END:variables
 }

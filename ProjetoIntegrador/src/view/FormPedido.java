@@ -8,7 +8,6 @@ package view;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import regraNegocio.ClienteRN;
 import regraNegocio.PedidoRN;
 import vo.ClienteVO;
@@ -43,7 +42,6 @@ public class FormPedido extends javax.swing.JFrame {
         lTelefone = new javax.swing.JLabel();
         tfTelefone = new javax.swing.JFormattedTextField();
         bPesquisar = new javax.swing.JButton();
-        bCadastrar = new javax.swing.JButton();
         bEditar = new javax.swing.JButton();
         tStatus = new javax.swing.JTextField();
         Status = new javax.swing.JLabel();
@@ -93,13 +91,6 @@ public class FormPedido extends javax.swing.JFrame {
         bPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bPesquisarActionPerformed(evt);
-            }
-        });
-
-        bCadastrar.setText("Cadastrar Novo");
-        bCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bCadastrarActionPerformed(evt);
             }
         });
 
@@ -220,9 +211,7 @@ public class FormPedido extends javax.swing.JFrame {
                         .addComponent(bPesquisar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bCadastrar)
-                        .addGap(173, 173, 173))
+                        .addGap(288, 288, 288))
                     .addGroup(pNorteLayout.createSequentialGroup()
                         .addGap(223, 223, 223)
                         .addGroup(pNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -247,7 +236,6 @@ public class FormPedido extends javax.swing.JFrame {
                     .addComponent(lTelefone)
                     .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bPesquisar)
-                    .addComponent(bCadastrar)
                     .addComponent(bEditar))
                 .addGap(18, 18, 18)
                 .addGroup(pNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -413,51 +401,48 @@ public class FormPedido extends javax.swing.JFrame {
 
                 if(!tValorTotal.getText().equals("0.0")){
                     pedidoVO.setValorTotal(Double.parseDouble(tValorTotal.getText()));
-                }else{
-                    System.out.println("tratar nenhum item");
-                }
+                    PedidoRN pedidoRN = new PedidoRN();
+                    int ultimoId = pedidoRN.gravarPedido(pedidoVO);
 
-                PedidoRN pedidoRN = new PedidoRN();
-                int ultimoId = pedidoRN.gravarPedido(pedidoVO);
-                
-                PedidoItemVO pedidoItemVO = new PedidoItemVO();
-                pedidoItemVO.setCodigoPedido(ultimoId);
-                System.out.println("chegou"+ultimoId);
-                
-                javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) tbItens.getModel();
-                
-                for(int i=0; i<dtm.getRowCount(); i++){
-//                    for(int j=0; j<=dtm.getColumnCount(); j++){
-                        pedidoItemVO.setCodigoProduto((int) dtm.getValueAt(i, 1));
-                        pedidoItemVO.setDescricao((String) dtm.getValueAt(i, 2));
-                        pedidoItemVO.setQuantidade((int) dtm.getValueAt(i, 3));
-                        pedidoItemVO.setValorUnitario((Double) dtm.getValueAt(i, 4));
-                        
-                        System.out.println(pedidoItemVO.getCodigoPedido());
-                        System.out.println(pedidoItemVO.getCodigoProduto());
+                    PedidoItemVO pedidoItemVO = new PedidoItemVO();
+                    pedidoItemVO.setCodigoPedido(ultimoId);
+
+                    javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) tbItens.getModel();
+                    for(int i=0; i<dtm.getRowCount(); i++){
+                        pedidoItemVO.setCodigoProduto(Integer.parseInt((String)dtm.getValueAt(i, 0)));
+                        pedidoItemVO.setDescricao((String)dtm.getValueAt(i, 1));
+                        pedidoItemVO.setQuantidade(Integer.parseInt((String)dtm.getValueAt(i, 2)));
+                        pedidoItemVO.setValorUnitario(Double.parseDouble((String)dtm.getValueAt(i, 3)));
                         pedidoRN.gravarPedidoItem(pedidoItemVO);
-//                    }
-                }
-                
-                
-                
+                    }
+                }else JOptionPane.showMessageDialog(null, "É necessário inserir pelo menos um item para poder finalizar o pedido.");
+            
             }catch(SQLException sql){
-                
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL ao tentar cadastrar o pedido. Erro: " + sql, "Cadastro de pedido", JOptionPane.ERROR_MESSAGE);
             }catch(Exception e){
-                
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar cadastrar o pedido. Erro: " + e, "Cadastro de pedido", JOptionPane.ERROR_MESSAGE);
             }
         }else JOptionPane.showMessageDialog(null, "É necessário inserir um cliente para finalizar o pedido.", "Pedido", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_bFinalizarPedidoActionPerformed
 
     private void bEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditarActionPerformed
-        CFormCliente cFormCliente = new CFormCliente();
-        cFormCliente.setVisible(true);
+        ClienteVO clienteVO = new ClienteVO();
+        if(!tCodigo.getText().isEmpty()){
+            clienteVO.setCodigo(Integer.parseInt(tCodigo.getText()));
+            clienteVO.setNome(tNome.getText());
+            clienteVO.setTelefone(tfTelefone.getText());
+            clienteVO.setLogradouro(tLogradouro.getText());
+            clienteVO.setNumero(Integer.parseInt(tNumero.getText()));
+            clienteVO.setBairro(tBairro.getText());
+            clienteVO.setCep(tfCep.getText());
+            clienteVO.setCidade(tCidade.getText());
+            clienteVO.setEstado(tEstado.getText());
+            clienteVO.setComplemento(tComplemento.getText());
+            clienteVO.setStatus(tStatus.getText());
+            CFormCliente cFormCliente = new CFormCliente(clienteVO);
+            cFormCliente.setVisible(true);
+        }else JOptionPane.showMessageDialog(null, "Não foi encontrado cliente para edição.");
     }//GEN-LAST:event_bEditarActionPerformed
-
-    private void bCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCadastrarActionPerformed
-        CFormCliente cFormCliente = new CFormCliente();
-        cFormCliente.setVisible(true);
-    }//GEN-LAST:event_bCadastrarActionPerformed
 
     private void bPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPesquisarActionPerformed
         try{
@@ -517,7 +502,6 @@ public class FormPedido extends javax.swing.JFrame {
     private javax.swing.JLabel Status;
     private javax.swing.JButton bAddPizza;
     private javax.swing.JButton bAddSabor;
-    private javax.swing.JButton bCadastrar;
     private javax.swing.JButton bEditar;
     private javax.swing.JButton bFinalizarPedido;
     private javax.swing.JButton bPesquisar;

@@ -5,6 +5,15 @@
  */
 package view;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import regraNegocio.ArquivoRN;
+import regraNegocio.ClienteRN;
+import regraNegocio.PedidoRN;
+import vo.ClienteVO;
+import vo.RelatorioVO;
+
 /**
  *
  * @author Giovane
@@ -16,6 +25,7 @@ public class RFormRelatorioPedidoPorCliente extends javax.swing.JFrame {
      */
     public RFormRelatorioPedidoPorCliente() {
         initComponents();
+        preencherCombo();
     }
 
     /**
@@ -45,6 +55,11 @@ public class RFormRelatorioPedidoPorCliente extends javax.swing.JFrame {
         setTitle("Relatório de Pedidos por Cliente");
 
         bPesquisar.setText("Pesquisar");
+        bPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bPesquisarActionPerformed(evt);
+            }
+        });
 
         lCliente.setText("Cliente:");
 
@@ -84,15 +99,20 @@ public class RFormRelatorioPedidoPorCliente extends javax.swing.JFrame {
 
         tbPedidoCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Cliente", "Descrição do Pedido", "Data", "Preço"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tbPedidoCliente);
 
         javax.swing.GroupLayout pCentroLayout = new javax.swing.GroupLayout(pCentro);
@@ -117,6 +137,11 @@ public class RFormRelatorioPedidoPorCliente extends javax.swing.JFrame {
         getContentPane().add(pCentro, java.awt.BorderLayout.CENTER);
 
         bGerar.setText("Gerar Relatório");
+        bGerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bGerarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pSulLayout = new javax.swing.GroupLayout(pSul);
         pSul.setLayout(pSulLayout);
@@ -143,6 +168,67 @@ public class RFormRelatorioPedidoPorCliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPesquisarActionPerformed
+        ClienteVO clienteVO = new ClienteVO();
+        try{
+            if(!tCodigo.getText().isEmpty() || !cbClientes.getSelectedItem().equals("Selecione")){
+                if(!tCodigo.getText().isEmpty())
+                    clienteVO.setCodigo(Integer.parseInt(tCodigo.getText()));
+                else clienteVO.setCodigo(0);
+                
+                if(!cbClientes.getSelectedItem().equals("Selecione"))
+                    clienteVO.setNome((String)cbClientes.getSelectedItem());
+
+                PedidoRN pedidoRN = new PedidoRN();
+                ArrayList<RelatorioVO> dadosRelatorio = pedidoRN.gerarRelatorioCliente(clienteVO);
+                
+                javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) tbPedidoCliente.getModel();
+                dtm.fireTableDataChanged();
+                dtm.setRowCount(0);
+                
+                for(RelatorioVO relVO : dadosRelatorio){
+                    String[] linha = {"" + relVO.getCliente(), "" 
+                                         + relVO.getDescricao(), "" 
+                                         + relVO.getDataI(), "" + ""
+                                         + relVO.getPreco(), ""};
+                    dtm.addRow(linha);
+                }
+
+            }else JOptionPane.showMessageDialog(null, "É necessário informar um cliente para gerar o relatório.");
+        }catch(SQLException sql){
+            
+        }catch(Exception e){
+            
+        }
+    }//GEN-LAST:event_bPesquisarActionPerformed
+
+    private void bGerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGerarActionPerformed
+        ArquivoRN arquivo = new ArquivoRN();
+        arquivo.gerarRelatorioPorCliente(this);
+        
+        javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) tbPedidoCliente.getModel();
+        dtm.fireTableDataChanged();
+        dtm.setRowCount(0);
+    }//GEN-LAST:event_bGerarActionPerformed
+
+    private void preencherCombo(){
+        try{    
+            ClienteVO clienteVO = new ClienteVO();
+            clienteVO.setCodigo(0);
+            clienteVO.setStatus("Ativo");
+        
+        
+            ClienteRN clienteRN = new ClienteRN();
+            ArrayList<ClienteVO> cliente = clienteRN.buscarCliente(clienteVO);
+            cbClientes.addItem("Selecione");
+            for(ClienteVO cliVO: cliente)
+                cbClientes.addItem(cliVO.getNome());
+        }catch(SQLException sql){
+            
+        }catch(Exception e){
+            
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bGerar;
     private javax.swing.JButton bPesquisar;
@@ -156,6 +242,6 @@ public class RFormRelatorioPedidoPorCliente extends javax.swing.JFrame {
     private javax.swing.JPanel pNorte;
     private javax.swing.JPanel pSul;
     private javax.swing.JTextField tCodigo;
-    private javax.swing.JTable tbPedidoCliente;
+    public javax.swing.JTable tbPedidoCliente;
     // End of variables declaration//GEN-END:variables
 }

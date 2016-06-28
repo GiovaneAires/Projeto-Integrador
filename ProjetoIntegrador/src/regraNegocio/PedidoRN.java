@@ -8,8 +8,10 @@ package regraNegocio;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import persistencia.PedidoPers;
+import vo.ClienteVO;
 import vo.PedidoItemVO;
 import vo.PedidoVO;
+import vo.RelatorioVO;
 
 /**
  *
@@ -20,9 +22,14 @@ public class PedidoRN {
         
     }
     
-    public ArrayList<PedidoVO> buscarPedido() throws SQLException, Exception{
+    public ArrayList<RelatorioVO> gerarRelatorioCliente(ClienteVO clienteVO) throws SQLException, Exception{
         PedidoPers pedPers = new PedidoPers();
-        return pedPers.buscarPedido();
+        return pedPers.gerarRelatorioCliente(clienteVO);
+    }
+    
+    public ArrayList<RelatorioVO> gerarRelatorioPeriodo(RelatorioVO relatorioVO) throws SQLException, Exception{
+        PedidoPers pedPers = new PedidoPers();
+        return pedPers.gerarRelatorioPeriodo(relatorioVO);
     }
     
     public int gravarPedido(PedidoVO pedVO) throws SQLException, Exception{
