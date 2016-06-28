@@ -45,7 +45,7 @@ public class BebidaPers {
             if(bebidaVO.getMarca() != null)
                 sql = sql + " AND pro_nome LIKE '%" + bebidaVO.getMarca() + "%'";
             
-            if(bebidaVO.getStatus() == "Ativo")
+            if("Ativo".equals(bebidaVO.getStatus()))
                 sql = sql + " AND pro_status = 'Ativo'";
             
             consulta = stm.executeQuery(sql);
@@ -63,7 +63,6 @@ public class BebidaPers {
                 
                 bebida.add(bebVO);
             }
-            
             return bebida;
         } finally {
             conexao.desconectar();   

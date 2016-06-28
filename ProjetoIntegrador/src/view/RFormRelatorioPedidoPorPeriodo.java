@@ -6,8 +6,6 @@
 package view;
 
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import regraNegocio.ArquivoRN;
@@ -188,12 +186,11 @@ public class RFormRelatorioPedidoPorPeriodo extends javax.swing.JFrame {
                                          + relVO.getPreco(), ""};
                     dtm.addRow(linha);
                 }
-
             }else JOptionPane.showMessageDialog(null, "É necessário informar o período para gerar o relatório.");
         }catch(SQLException sql){
-            
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL ao buscar os dados do relatório. Erro: " + sql, "Gerar relatório por período", JOptionPane.ERROR_MESSAGE);
         }catch(Exception e){
-            
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao buscar os dados do relatório. Erro: " + e, "Gerar relatório por período", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_bPesquisarActionPerformed
 

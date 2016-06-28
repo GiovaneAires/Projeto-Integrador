@@ -46,7 +46,7 @@ public class PizzaPers {
             if(pizzaVO.getSabor() != null)
                 sql = sql + " AND pro_nome LIKE '%" + pizzaVO.getSabor() + "%'";
             
-            if(pizzaVO.getStatus() == "Ativo")
+            if("Ativo".equals(pizzaVO.getStatus()))
                 sql = sql + " AND pro_status = 'Ativo'";
             
             consulta = stm.executeQuery(sql);
@@ -97,7 +97,6 @@ public class PizzaPers {
                         + "pro_status = '" + pizVO.getStatus() + "' "
                         + "WHERE pro_codigo = " + pizVO.getCodigo();
             }
-            
             stm.executeUpdate(sql);
         }finally{
             conexao.desconectar();

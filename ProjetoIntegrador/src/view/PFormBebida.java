@@ -44,10 +44,7 @@ public class PFormBebida extends TFormPesquisa implements ActionListener{
 
         tbBebida.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Código", "Descrição", "Tipo", "Volume", "Preço", "Status"
@@ -141,8 +138,8 @@ public class PFormBebida extends TFormPesquisa implements ActionListener{
             bebidaVO.setCodigo(Integer.parseInt((String) tbBebida.getValueAt(tbBebida.getSelectedRow(), 0)));
             bebidaVO.setMarca((String) tbBebida.getValueAt(tbBebida.getSelectedRow(), 1));
             bebidaVO.setTipo((String) tbBebida.getValueAt(tbBebida.getSelectedRow(), 2));
-            bebidaVO.setPreco(Double.parseDouble((String) tbBebida.getValueAt(tbBebida.getSelectedRow(), 3)));
-            bebidaVO.setVolume(Double.parseDouble((String) tbBebida.getValueAt(tbBebida.getSelectedRow(), 4)));
+            bebidaVO.setVolume(Double.parseDouble((String) tbBebida.getValueAt(tbBebida.getSelectedRow(), 3)));
+            bebidaVO.setPreco(Double.parseDouble((String) tbBebida.getValueAt(tbBebida.getSelectedRow(), 4)));
             bebidaVO.setStatus((String) tbBebida.getValueAt(tbBebida.getSelectedRow(), 5));
             
             CFormBebida cFormBebida = new CFormBebida(bebidaVO);

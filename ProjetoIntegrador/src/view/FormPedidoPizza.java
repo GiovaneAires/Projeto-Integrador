@@ -7,6 +7,7 @@ package view;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import regraNegocio.BordaRN;
 import regraNegocio.PizzaRN;
 import vo.BordaVO;
@@ -159,19 +160,8 @@ public class FormPedidoPizza extends javax.swing.JFrame {
         
         Double valorPizza = 0.0;
         String sabor1 = cbSabor1.getSelectedItem().equals("Selecione") ? "" : (String)cbSabor1.getSelectedItem();
-        String sabor2 = cbSabor2.getSelectedItem().equals("Selecione") ? "" : (String)cbSabor2.getSelectedItem();
-        String sabor3 = cbSabor3.getSelectedItem().equals("Selecione") ? "" : (String)cbSabor3.getSelectedItem();
-        
-        if(cbTamanho.getSelectedItem().equals("Pequena")){
-            valorPizza = 15.0;
-            this.form.tValorTotal.setText(String.valueOf(Double.parseDouble(this.form.tValorTotal.getText()) + valorPizza));
-        }else if(cbTamanho.getSelectedItem().equals("Média")){
-            valorPizza = 20.0;
-            this.form.tValorTotal.setText(String.valueOf(Double.parseDouble(this.form.tValorTotal.getText()) + valorPizza));
-        }else if(cbTamanho.getSelectedItem().equals("Grande")){
-            valorPizza = 30.0;
-            this.form.tValorTotal.setText(String.valueOf(Double.parseDouble(this.form.tValorTotal.getText()) + valorPizza));
-        }
+        String sabor2 = cbSabor2.getSelectedItem().equals("Selecione") ? "" : ", " + (String)cbSabor2.getSelectedItem();
+        String sabor3 = cbSabor3.getSelectedItem().equals("Selecione") ? "" : ", " + (String)cbSabor3.getSelectedItem();
         
         PizzaVO pizzaVO = new PizzaVO();
         pizzaVO.setSabor((String)cbSabor1.getSelectedItem());
@@ -179,18 +169,33 @@ public class FormPedidoPizza extends javax.swing.JFrame {
         PizzaRN pizzaRN = new PizzaRN();
         try{
             ArrayList<PizzaVO> pizza = pizzaRN.buscarPizza(pizzaVO);
+            
+            for(PizzaVO pizVO: pizza){
+                valorPizza += pizVO.getPreco();
+            }
+            
+            if(cbTamanho.getSelectedItem().equals("Pequena")){
+                this.form.tValorTotal.setText(String.valueOf(Double.parseDouble(this.form.tValorTotal.getText()) + valorPizza));
+            }else if(cbTamanho.getSelectedItem().equals("Média")){
+                valorPizza += 5.0;
+                this.form.tValorTotal.setText(String.valueOf(Double.parseDouble(this.form.tValorTotal.getText()) + valorPizza));
+            }else if(cbTamanho.getSelectedItem().equals("Grande")){
+                valorPizza += 10.0;
+                this.form.tValorTotal.setText(String.valueOf(Double.parseDouble(this.form.tValorTotal.getText()) + valorPizza));
+            }
+            
             for(PizzaVO pizVO: pizza){
                 String[] linha = {"" + pizVO.getCodigo(), ""
-                             + sabor1 + ", " + sabor2 + ", " + sabor3, ""
+                             + sabor1 + sabor2 + sabor3, ""
                              + "1", ""
                              + valorPizza + ""};
                 dtm.addRow(linha);
             }
             
         }catch(SQLException sql){
-            
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL ao tentar buscar a pizza. Erro: " + sql, "Cadastro de pedido", JOptionPane.ERROR_MESSAGE);
         }catch (Exception e){
-            
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar buscar a pizza. Erro: " + e, "Cadastro de pedido", JOptionPane.ERROR_MESSAGE);
         }
 
         BordaVO bordaVO = new BordaVO();
@@ -209,9 +214,9 @@ public class FormPedidoPizza extends javax.swing.JFrame {
             }
             
         }catch(SQLException sql){
-            
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL ao tentar buscar a borda. Erro: " + sql, "Cadastro de pedido", JOptionPane.ERROR_MESSAGE);
         }catch (Exception e){
-            
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar buscar a borda. Erro: " + e, "Cadastro de pedido", JOptionPane.ERROR_MESSAGE);
         }finally{
             this.dispose();
         }
@@ -248,9 +253,9 @@ public class FormPedidoPizza extends javax.swing.JFrame {
                 cbSabor3.addItem(pizVO.getSabor());
             }
         }catch (SQLException sql){
-        
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL ao tentar preencher os combobox. Erro: " + sql, "Cadastro de pedido", JOptionPane.ERROR_MESSAGE);
         }catch (Exception e){
-            
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar preencher os combobox. Erro: " + e, "Cadastro de pedido", JOptionPane.ERROR_MESSAGE);
         }
     }
 

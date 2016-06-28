@@ -7,6 +7,7 @@ package view;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import regraNegocio.BebidaRN;
 import vo.BebidaVO;
 
@@ -132,34 +133,34 @@ public class FormPedidoBebida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAdicionarActionPerformed
-        javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) this.form.tbItens.getModel();
-        dtm.fireTableDataChanged();
-        
-        BebidaVO bebidaVO = new BebidaVO();
-        bebidaVO.setMarca((String)cbMarca.getSelectedItem());
-        
-        BebidaRN bebidaRN = new BebidaRN();
-        try{
-            ArrayList<BebidaVO> bebida = bebidaRN.buscarBebida(bebidaVO);
-            for(BebidaVO bebVO: bebida){
-                String[] linha = {"" + bebVO.getCodigo(), ""
-                             + bebVO.getMarca(), ""
-                             + tQuantidade.getText(), ""
-                             + bebVO.getPreco() + ""};
-                dtm.addRow(linha);
-                
-                Double valorTotal = tQuantidade.getText().equals("0.0") ? bebVO.getPreco() : bebVO.getPreco() * Double.parseDouble(tQuantidade.getText());
-                this.form.tValorTotal.setText(String.valueOf(Double.parseDouble(this.form.tValorTotal.getText()) + valorTotal));
-            }
-            
-        }catch(SQLException sql){
-            
-        }catch (Exception e){
-            
-        }finally{
-            this.dispose();
-        }
+        if(!tQuantidade.getText().isEmpty()){
+            javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) this.form.tbItens.getModel();
+            dtm.fireTableDataChanged();
 
+            BebidaVO bebidaVO = new BebidaVO();
+            bebidaVO.setMarca((String)cbMarca.getSelectedItem());
+
+            BebidaRN bebidaRN = new BebidaRN();
+            try{
+                ArrayList<BebidaVO> bebida = bebidaRN.buscarBebida(bebidaVO);
+                for(BebidaVO bebVO: bebida){
+                    String[] linha = {"" + bebVO.getCodigo(), ""
+                                 + bebVO.getMarca(), ""
+                                 + tQuantidade.getText(), ""
+                                 + bebVO.getPreco() + ""};
+                    dtm.addRow(linha);
+
+                    Double valorTotal = tQuantidade.getText().equals("0.0") ? bebVO.getPreco() : bebVO.getPreco() * Double.parseDouble(tQuantidade.getText());
+                    this.form.tValorTotal.setText(String.valueOf(Double.parseDouble(this.form.tValorTotal.getText()) + valorTotal));
+                }
+            }catch(SQLException sql){
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL ao tentar buscar a bebida. Erro: " + sql, "Cadastro de pedido", JOptionPane.ERROR_MESSAGE);
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar buscar a bebida. Erro: " + e, "Cadastro de pedido", JOptionPane.ERROR_MESSAGE);
+            }finally{
+                this.dispose();
+            }
+        }else JOptionPane.showMessageDialog(null, "É necessário informar a quantidade para adicionar a bebida.");
     }//GEN-LAST:event_bAdicionarActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
@@ -180,9 +181,9 @@ public class FormPedidoBebida extends javax.swing.JFrame {
                 cbVolume.addItem(bebVO.getVolume().toString());
             }
         }catch (SQLException sql){
-        
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL ao tentar preencher os combobox. Erro: " + sql, "Cadastro de pedido", JOptionPane.ERROR_MESSAGE);
         }catch (Exception e){
-            
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar preencher os combobox. Erro: " + e, "Cadastro de pedido", JOptionPane.ERROR_MESSAGE);
         }
     }
 

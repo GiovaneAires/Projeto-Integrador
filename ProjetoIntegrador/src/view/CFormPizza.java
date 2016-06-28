@@ -113,12 +113,6 @@ public class CFormPizza extends TFormCadastro implements ActionListener{
 
         tCodigo.setEnabled(false);
 
-        tSabor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tSaborActionPerformed(evt);
-            }
-        });
-
         taIngredientes.setColumns(20);
         taIngredientes.setRows(5);
         jScrollPane1.setViewportView(taIngredientes);
@@ -205,10 +199,6 @@ public class CFormPizza extends TFormCadastro implements ActionListener{
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tSaborActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tSaborActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tSaborActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbStatus;

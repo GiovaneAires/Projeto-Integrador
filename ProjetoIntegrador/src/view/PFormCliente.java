@@ -44,10 +44,7 @@ public class PFormCliente extends TFormPesquisa implements ActionListener{
 
         tbCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Código", "Nome", "Telefone", "Status", "Endereço"
@@ -155,7 +152,7 @@ public class PFormCliente extends TFormPesquisa implements ActionListener{
                     clienteVO.setStatus(cliVO.getStatus());
                 }
             }catch(Exception e){
-                
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar editar o cliente. Erro:" + e, "Edição de Cliente", JOptionPane.ERROR_MESSAGE);
             }
             CFormCliente cFormCliente = new CFormCliente(clienteVO);
             cFormCliente.setVisible(true);

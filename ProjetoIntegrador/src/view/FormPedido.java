@@ -394,35 +394,39 @@ public class FormPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void bFinalizarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFinalizarPedidoActionPerformed
-        if(!tCodigo.getText().isEmpty()){
-            try{
-                PedidoVO pedidoVO = new PedidoVO();
-                pedidoVO.setCodigoCliente(Integer.parseInt(tCodigo.getText()));
+        try{
+            if(!tCodigo.getText().isEmpty()){
+                try{
+                    PedidoVO pedidoVO = new PedidoVO();
+                    pedidoVO.setCodigoCliente(Integer.parseInt(tCodigo.getText()));
 
-                if(!tValorTotal.getText().equals("0.0")){
-                    pedidoVO.setValorTotal(Double.parseDouble(tValorTotal.getText()));
-                    PedidoRN pedidoRN = new PedidoRN();
-                    int ultimoId = pedidoRN.gravarPedido(pedidoVO);
+                    if(!tValorTotal.getText().equals("0.0")){
+                        pedidoVO.setValorTotal(Double.parseDouble(tValorTotal.getText()));
+                        PedidoRN pedidoRN = new PedidoRN();
+                        int ultimoId = pedidoRN.gravarPedido(pedidoVO);
 
-                    PedidoItemVO pedidoItemVO = new PedidoItemVO();
-                    pedidoItemVO.setCodigoPedido(ultimoId);
+                        PedidoItemVO pedidoItemVO = new PedidoItemVO();
+                        pedidoItemVO.setCodigoPedido(ultimoId);
 
-                    javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) tbItens.getModel();
-                    for(int i=0; i<dtm.getRowCount(); i++){
-                        pedidoItemVO.setCodigoProduto(Integer.parseInt((String)dtm.getValueAt(i, 0)));
-                        pedidoItemVO.setDescricao((String)dtm.getValueAt(i, 1));
-                        pedidoItemVO.setQuantidade(Integer.parseInt((String)dtm.getValueAt(i, 2)));
-                        pedidoItemVO.setValorUnitario(Double.parseDouble((String)dtm.getValueAt(i, 3)));
-                        pedidoRN.gravarPedidoItem(pedidoItemVO);
-                    }
-                }else JOptionPane.showMessageDialog(null, "É necessário inserir pelo menos um item para poder finalizar o pedido.");
-            
-            }catch(SQLException sql){
-                JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL ao tentar cadastrar o pedido. Erro: " + sql, "Cadastro de pedido", JOptionPane.ERROR_MESSAGE);
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar cadastrar o pedido. Erro: " + e, "Cadastro de pedido", JOptionPane.ERROR_MESSAGE);
-            }
-        }else JOptionPane.showMessageDialog(null, "É necessário inserir um cliente para finalizar o pedido.", "Pedido", JOptionPane.INFORMATION_MESSAGE);
+                        javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) tbItens.getModel();
+                        for(int i=0; i<dtm.getRowCount(); i++){
+                            pedidoItemVO.setCodigoProduto(Integer.parseInt((String)dtm.getValueAt(i, 0)));
+                            pedidoItemVO.setDescricao((String)dtm.getValueAt(i, 1));
+                            pedidoItemVO.setQuantidade(Integer.parseInt((String)dtm.getValueAt(i, 2)));
+                            pedidoItemVO.setValorUnitario(Double.parseDouble((String)dtm.getValueAt(i, 3)));
+                            pedidoRN.gravarPedidoItem(pedidoItemVO);
+                        }
+                    }else JOptionPane.showMessageDialog(null, "É necessário inserir pelo menos um item para poder finalizar o pedido.");
+
+                }catch(SQLException sql){
+                    JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL ao tentar cadastrar o pedido. Erro: " + sql, "Cadastro de pedido", JOptionPane.ERROR_MESSAGE);
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar cadastrar o pedido. Erro: " + e, "Cadastro de pedido", JOptionPane.ERROR_MESSAGE);
+                }
+            }else JOptionPane.showMessageDialog(null, "É necessário inserir um cliente para finalizar o pedido.", "Pedido", JOptionPane.INFORMATION_MESSAGE);
+        }finally{
+            this.dispose();
+        }
     }//GEN-LAST:event_bFinalizarPedidoActionPerformed
 
     private void bEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditarActionPerformed
@@ -481,9 +485,9 @@ public class FormPedido extends javax.swing.JFrame {
             }else
                 JOptionPane.showMessageDialog(null, "Informe um telefone e tente realizar a persquisa novamente.", "Pesquisa de Cliente", JOptionPane.INFORMATION_MESSAGE);
         }catch(SQLException sql){
-            
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL ao tentar buscar o cliente. Erro: " + sql, "Cadastro de pedido", JOptionPane.ERROR_MESSAGE);
         }catch(Exception e){
-            
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar buscar o cliente. Erro: " + e, "Cadastro de pedido", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_bPesquisarActionPerformed
 
@@ -495,7 +499,6 @@ public class FormPedido extends javax.swing.JFrame {
     private void bAddSaborActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddSaborActionPerformed
         FormPedidoBebida formPedidoBebida = new FormPedidoBebida(this);
         formPedidoBebida.setVisible(true);
-        
     }//GEN-LAST:event_bAddSaborActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -46,7 +46,7 @@ public class BordaPers {
             if(bordaVO.getSabor() != null)
                 sql = sql + " AND pro_nome LIKE '%" + bordaVO.getSabor() + "%'";
             
-            if(bordaVO.getStatus() == "Ativo")
+            if("Ativo".equals(bordaVO.getStatus()))
                 sql = sql + " AND pro_status = 'Ativo'";
             
             consulta = stm.executeQuery(sql);

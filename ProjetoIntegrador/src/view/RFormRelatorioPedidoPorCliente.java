@@ -196,9 +196,9 @@ public class RFormRelatorioPedidoPorCliente extends javax.swing.JFrame {
 
             }else JOptionPane.showMessageDialog(null, "É necessário informar um cliente para gerar o relatório.");
         }catch(SQLException sql){
-            
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL ao buscar os dados do relatório. Erro: " + sql, "Gerar relatório por cliente", JOptionPane.ERROR_MESSAGE);
         }catch(Exception e){
-            
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao buscar os dados do relatório. Erro: " + e, "Gerar relatório por cliente", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_bPesquisarActionPerformed
 
@@ -215,18 +215,16 @@ public class RFormRelatorioPedidoPorCliente extends javax.swing.JFrame {
         try{    
             ClienteVO clienteVO = new ClienteVO();
             clienteVO.setCodigo(0);
-            clienteVO.setStatus("Ativo");
-        
-        
+
             ClienteRN clienteRN = new ClienteRN();
             ArrayList<ClienteVO> cliente = clienteRN.buscarCliente(clienteVO);
             cbClientes.addItem("Selecione");
             for(ClienteVO cliVO: cliente)
                 cbClientes.addItem(cliVO.getNome());
         }catch(SQLException sql){
-            
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro de SQL ao tentar preencher o combobox. Erro: " + sql, "Gerar relatório por cliente", JOptionPane.ERROR_MESSAGE);
         }catch(Exception e){
-            
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar preencher o combobox. Erro: " + e, "Gerar relatório por cliente", JOptionPane.ERROR_MESSAGE);
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

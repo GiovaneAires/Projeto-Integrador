@@ -43,10 +43,7 @@ public class PFormPizza extends TFormPesquisa implements ActionListener{
 
         tbPizza.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Código", "Sabor", "Tipo", "Preço", "Status"
@@ -86,7 +83,7 @@ public class PFormPizza extends TFormPesquisa implements ActionListener{
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * @param args the command line arguments
+     * @param evt the command line arguments
      */
     
     @Override
@@ -152,7 +149,7 @@ public class PFormPizza extends TFormPesquisa implements ActionListener{
                     pizzaVO.setStatus(pizVO.getStatus());
                 }
             }catch(Exception e){
-                
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar editar a pizza. Erro:" + e, "Edição de Pizza", JOptionPane.ERROR_MESSAGE);
             }
             
             CFormPizza cFormPizza = new CFormPizza(pizzaVO);

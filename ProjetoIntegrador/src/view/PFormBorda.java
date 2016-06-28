@@ -43,10 +43,7 @@ public class PFormBorda extends TFormPesquisa implements ActionListener{
 
         tbBorda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Código", "Sabor", "Tipo", "Preço", "Status"
